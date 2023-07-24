@@ -6,6 +6,7 @@ using UnityEngine;
 public struct Employee {
     public string FirstName;
     public string LastName;
+    public bool IsMale;
     public Profession Profession;
     public Skill[] Skills;
 }
