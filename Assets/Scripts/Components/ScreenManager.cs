@@ -4,11 +4,19 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ScreenManager : MonoBehaviour {
+    bool freeMove;
+
     void Start() {
         Cursor.visible = false;
     }
 
     void Update() {
-        Mouse.current.WarpCursorPosition(CursorInfo.Position);
+        if (Input.GetKeyDown(KeyCode.Escape)) {
+            Cursor.visible = !Cursor.visible;
+            freeMove = !freeMove;
+        }
+        if (!freeMove) {
+            Mouse.current.WarpCursorPosition(CursorInfo.ScreenPosition);
+        }
     }
 }

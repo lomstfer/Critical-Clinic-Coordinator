@@ -15,7 +15,7 @@ public class CursorMovement : MonoBehaviour {
     void Update() {
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
-        Vector2 delta = new Vector2(h, v) * Settings.cursorSensititvity * Time.deltaTime;
+        Vector2 delta = new Vector2(h, v) * Settings.cursorSensititvity;
 
         cursor.localPosition += (Vector3)delta;
         cursor.localPosition = new Vector3(
@@ -25,14 +25,14 @@ public class CursorMovement : MonoBehaviour {
 
         Vector2 screenPos = Camera.main.WorldToScreenPoint(cursor.position);
         if (screenPosition == ScreenPosition.Left && cursor.localPosition.x <= 0) {
-            CursorInfo.Position = screenPos;
+            CursorInfo.WorldPosition = cursor.position;
+            CursorInfo.ScreenPosition = screenPos;
+            CursorInfo.Monitor = 0;
         } 
         else if (screenPosition == ScreenPosition.Right && cursor.localPosition.x > 0) {
-            print("eee");
-            CursorInfo.Position = screenPos;
-        }
-        if (screenPosition == ScreenPosition.Right) {
-            print(cursor.localPosition);
+            CursorInfo.WorldPosition = cursor.position;
+            CursorInfo.ScreenPosition = screenPos;
+            CursorInfo.Monitor = 1;
         }
     }
 
