@@ -7,6 +7,7 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     [Header("Male Parts")]
     [SerializeField] Sprite[] maleHeads;
     [SerializeField] Sprite[] maleHairs;
+    [SerializeField] Sprite[] maleHairs2;
     [SerializeField] Sprite[] maleBrows;
     [SerializeField] Sprite[] maleEyes;
     [SerializeField] Sprite[] maleMouths;
@@ -14,6 +15,7 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     [Header("Female Parts")]
     [SerializeField] Sprite[] femaleHeads;
     [SerializeField] Sprite[] femaleHairs;
+    [SerializeField] Sprite[] femaleHairs2;
     [SerializeField] Sprite[] femaleBrows;
     [SerializeField] Sprite[] femaleEyes;
     [SerializeField] Sprite[] femaleMouths;
@@ -24,13 +26,14 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     [Header("Images")]
     [SerializeField] Image head;
     [SerializeField] Image hair;
+    [SerializeField] Image hair2;
     [SerializeField] Image brows;
     [SerializeField] Image eyes;
     [SerializeField] Image mouth;
 
     public int[] GenerateNewFaceId() {
         int[] id = new int[7];
-        id[0] = Random.Range(0, 1);
+        id[0] = Random.Range(0, 2);
         bool isMale = id[0] == 0 ? true : false;
         id[1] = Random.Range(0, isMale ? maleHeads.Length : femaleHeads.Length);
         id[2] = Random.Range(0, isMale ? maleHairs.Length : femaleHairs.Length);
@@ -42,16 +45,17 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     }
 
     public void ApplyFaceId(int[] id) {
-        print("Id Applied");
         bool isMale = id[0] == 0 ? true : false;
         head.sprite = isMale ? maleHeads[id[1]] : femaleHeads[id[1]];
         hair.sprite = isMale ? maleHairs[id[2]] : femaleHairs[id[2]];
+        hair2.sprite = isMale ? maleHairs2[0] : femaleHairs2[id[2]];
         brows.sprite = isMale ? maleBrows[id[3]] : femaleBrows[id[3]];
         eyes.sprite = isMale ? maleEyes[id[4]] : femaleEyes[id[4]];
         mouth.sprite = isMale ? maleMouths[id[5]] : femaleMouths[id[5]];
         
         ColorProfile colors = colorProfiles[id[6]];
         hair.color = colors.Hair;
+        hair2.color = colors.Hair;
         head.color = colors.Skin;
         mouth.color = colors.Lips;
     }
