@@ -9,6 +9,10 @@ public class EmployeeManager : Singleton<EmployeeManager> {
     [SerializeField] EmployeeManagerUIScript ui;
 
     public void AddEmployee(Employee employee) {
+        if (Employees.Contains(employee)) {
+            return;
+        }
+
         Employees.Add(employee);
         ui.AddEmployee(employee);
 
