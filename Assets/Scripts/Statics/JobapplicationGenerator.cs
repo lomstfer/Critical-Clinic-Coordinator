@@ -8,8 +8,8 @@ public static class JobapplicationGenerator {
         Jobapplication jobapplication = new Jobapplication();
         Employee jobapplicationEmployee = new Employee();
 
-        jobapplicationEmployee.IsMale = UnityEngine.Random.Range(0, 2) == 0;
-        jobapplicationEmployee.FirstName = jobapplicationEmployee.IsMale ? NameGenerator.GetRandomMaleName() : NameGenerator.GetRandomFemaleName();
+        jobapplicationEmployee.FaceId = FaceGenerator.Instance.GenerateNewFaceId();
+        jobapplicationEmployee.FirstName = jobapplicationEmployee.FaceId[0] == 0 ? NameGenerator.GetRandomMaleName() : NameGenerator.GetRandomFemaleName();
         jobapplicationEmployee.LastName = NameGenerator.GetRandomLastName();
 
         // Profession
