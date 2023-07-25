@@ -5,32 +5,26 @@ using UnityEngine.UI;
 using TMPro;
 
 public class JobapplicationCurrentMailScript : MonoBehaviour {
-    [SerializeField] TextMeshProUGUI subject;
-    [SerializeField] TextMeshProUGUI introduction;
-    [SerializeField] TextMeshProUGUI employeeInfo;
-
-    [SerializeField] TextMeshProUGUI employeeInfoHeader;
+    [SerializeField] Face face;
+    [SerializeField] TextMeshProUGUI name;
+    [SerializeField] TextMeshProUGUI skills;
 
     void Start() {
         JobapplicationsManager.Instance.SelectJobApplicationEvent += OnSelectJobApplicationEvent;    
     }
 
     public void OnSelectJobApplicationEvent(Jobapplication jobapplication) {
-        employeeInfoHeader.text = "Employee info";
+        name.text = jobapplication.EmployeeData.FirstName + " " + jobapplication.EmployeeData.LastName;
 
-        subject.text = jobapplication.Subject;
-        introduction.text = jobapplication.Introduction;
-
-        employeeInfo.text = "";
-        employeeInfo.text += "\t* ";
+        skills.text = "";
         for (int i = 0; i < jobapplication.EmployeeData.Skills.Length; i++) {
             if (i > 0 && i < jobapplication.EmployeeData.Skills.Length) {
-                employeeInfo.text += ", ";
+                skills.text += ",\n";
             }
-            employeeInfo.text += jobapplication.EmployeeData.Skills[i].ToString();
+            skills.text += jobapplication.EmployeeData.Skills[i].ToString();
         }
 
-        FaceGenerator.Instance.ApplyFaceId(jobapplication.EmployeeData.FaceId);
+        face.ApplyFaceId(jobapplication.EmployeeData.FaceId);
     }
 
     public void AcceptJobApplication() {

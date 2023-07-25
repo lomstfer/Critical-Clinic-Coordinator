@@ -4,7 +4,8 @@ using UnityEngine;
 using TMPro;
 
 public class EmployeeUIScript : MonoBehaviour {
-    [SerializeField] TextMeshProUGUI nameT;
+    [SerializeField] Face face;
+    [SerializeField] TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
 
     Employee _employeeData;
@@ -12,7 +13,9 @@ public class EmployeeUIScript : MonoBehaviour {
     public void SetData(Employee employeeData) {
         _employeeData = employeeData;
 
-        nameT.text = employeeData.FirstName + " " + employeeData.LastName;
+        face.ApplyFaceId(employeeData.FaceId);
+
+        name.text = employeeData.FirstName + " " + employeeData.LastName;
         skills.text = "";
         for (int i = 0; i < employeeData.Skills.Length; i++) {
             if (i > 0 && i < employeeData.Skills.Length) {

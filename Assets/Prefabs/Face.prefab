@@ -58,7 +58,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3301887, g: 0.23776658, b: 0.20714667, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -66,6 +66,81 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_Sprite: {fileID: 2069726793, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!1 &1163537861896522786
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 6581137827160463737}
+  - component: {fileID: 8713647082586782393}
+  - component: {fileID: 3689395557056153720}
+  m_Layer: 5
+  m_Name: Background
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &6581137827160463737
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163537861896522786}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5465352569100869267}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 50, y: 50}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!222 &8713647082586782393
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163537861896522786}
+  m_CullTransparentMesh: 1
+--- !u!114 &3689395557056153720
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1163537861896522786}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0.8745099, g: 0.9176471, b: 0.8941177, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -283,7 +358,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.6792453, g: 0.59428895, b: 0.44535422, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -433,7 +508,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0.3301887, g: 0.23776658, b: 0.20714667, a: 1}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -459,7 +534,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5465352569100869267}
-  - component: {fileID: 5742820347685015237}
+  - component: {fileID: 540179597905687446}
   m_Layer: 5
   m_Name: Face
   m_TagString: Untagged
@@ -479,10 +554,11 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
+  - {fileID: 6581137827160463737}
   - {fileID: 8976365582932842488}
   - {fileID: 6874696704425557118}
-  - {fileID: 7103802077669875713}
   - {fileID: 7693520533086837522}
+  - {fileID: 7103802077669875713}
   - {fileID: 4848821569854292333}
   - {fileID: 4107684870453589751}
   m_Father: {fileID: 0}
@@ -492,7 +568,7 @@ RectTransform:
   m_AnchoredPosition: {x: 70.9, y: 60.8}
   m_SizeDelta: {x: 100, y: 100}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &5742820347685015237
+--- !u!114 &540179597905687446
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -501,104 +577,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 8554616779525153690}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 7e61f14cbf037a24b9871357b2d03510, type: 3}
+  m_Script: {fileID: 11500000, guid: e84e50bdc35bf09458f38fb07db7b761, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maleHeads:
-  - {fileID: -37526327, guid: 68bfe7fe20456e540a8feaf1f9d6a52d, type: 3}
-  - {fileID: -1173921396, guid: 68bfe7fe20456e540a8feaf1f9d6a52d, type: 3}
-  - {fileID: -86198408, guid: 68bfe7fe20456e540a8feaf1f9d6a52d, type: 3}
-  maleHairs:
-  - {fileID: 2069726793, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: -608791217, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: -880614590, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: -1454564584, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: 2005375096, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: -1475681828, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: -1749414080, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  - {fileID: 1248050967, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  maleHairs2:
-  - {fileID: 1248050967, guid: 7b33c63694d6d8c49bacc49cc7f9e800, type: 3}
-  maleBrows:
-  - {fileID: -1054794867, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  - {fileID: -741005234, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  - {fileID: 675640618, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  - {fileID: 1364282871, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  - {fileID: 1881235588, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  - {fileID: 406328206, guid: 056a25e03a191a94eb46c1512b2cd78e, type: 3}
-  maleEyes:
-  - {fileID: -2111948571, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 2014871852, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 1146512574, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 2146514504, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 260282286, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 1577472438, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: -1430192053, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: -564956082, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  - {fileID: 675498397, guid: 8e482514f4e82e443bd8086719356b87, type: 3}
-  maleMouths:
-  - {fileID: -859420546, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  - {fileID: 725167052, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  - {fileID: -863055545, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  - {fileID: -589345238, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  - {fileID: -1500229410, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  - {fileID: -1970725206, guid: 73cd1d7e406fa8f4bbc93156ac20bd0f, type: 3}
-  femaleHeads:
-  - {fileID: 690819968, guid: 7191d5681fccd5a4a84fe566675cbe18, type: 3}
-  - {fileID: 973157500, guid: 7191d5681fccd5a4a84fe566675cbe18, type: 3}
-  - {fileID: 1840081223, guid: 7191d5681fccd5a4a84fe566675cbe18, type: 3}
-  femaleHairs:
-  - {fileID: -390644778, guid: 340f65e476d70724b843ff58f3904cea, type: 3}
-  - {fileID: -235236654, guid: 340f65e476d70724b843ff58f3904cea, type: 3}
-  - {fileID: -2000798769, guid: 340f65e476d70724b843ff58f3904cea, type: 3}
-  - {fileID: -1754742164, guid: 340f65e476d70724b843ff58f3904cea, type: 3}
-  - {fileID: 810359341, guid: 340f65e476d70724b843ff58f3904cea, type: 3}
-  femaleHairs2:
-  - {fileID: 29513098, guid: 69e9973952dc59a43ba93a37201fb6e5, type: 3}
-  - {fileID: 1654002083, guid: 69e9973952dc59a43ba93a37201fb6e5, type: 3}
-  - {fileID: -576972455, guid: 69e9973952dc59a43ba93a37201fb6e5, type: 3}
-  - {fileID: 1757107086, guid: 69e9973952dc59a43ba93a37201fb6e5, type: 3}
-  - {fileID: 1246740719, guid: 69e9973952dc59a43ba93a37201fb6e5, type: 3}
-  femaleBrows:
-  - {fileID: 1603288357, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  - {fileID: 765307821, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  - {fileID: 1060266946, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  - {fileID: -432173002, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  - {fileID: -1390379782, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  - {fileID: -800685489, guid: 36b7e7c1ac2a8794facec55a64ab7ccf, type: 3}
-  femaleEyes:
-  - {fileID: -525691275, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  - {fileID: -870116436, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  - {fileID: 301492629, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  - {fileID: 1966076310, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  - {fileID: -2123732515, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  - {fileID: 489429248, guid: e57e7afeb935a804d92ef5a18be32459, type: 3}
-  femaleMouths:
-  - {fileID: -1172419734, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  - {fileID: 1877848406, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  - {fileID: -192156844, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  - {fileID: -1727878225, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  - {fileID: -678895220, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  - {fileID: 1221593979, guid: 0d1b9c17e5b6a054ca5295e5a63dc1f9, type: 3}
-  colorProfiles:
-  - Hair: {r: 0.16037738, g: 0.13125058, b: 0.11877005, a: 1}
-    Skin: {r: 0.6132076, g: 0.50085557, b: 0.3268512, a: 1}
-    Lips: {r: 0.735849, g: 0.43288153, b: 0.32974365, a: 1}
-  - Hair: {r: 0.09433961, g: 0.08107057, b: 0.07609469, a: 1}
-    Skin: {r: 0.8867924, g: 0.83464456, b: 0.74875396, a: 1}
-    Lips: {r: 0.8773585, g: 0.67531717, b: 0.5504183, a: 1}
-  - Hair: {r: 0.8490566, g: 0.76046187, b: 0.5166429, a: 1}
-    Skin: {r: 0.6509434, g: 0.47689605, b: 0.33468318, a: 1}
-    Lips: {r: 0.8018868, g: 0.5807978, b: 0.4349858, a: 1}
-  - Hair: {r: 0.05660379, g: 0.03263739, b: 0.023228915, a: 1}
-    Skin: {r: 0.23584908, g: 0.1743223, b: 0.14351194, a: 1}
-    Lips: {r: 0.09433961, g: 0.055090774, b: 0.028924882, a: 1}
-  - Hair: {r: 0, g: 0, b: 0, a: 1}
-    Skin: {r: 0.5377358, g: 0.33834565, b: 0.25111246, a: 1}
-    Lips: {r: 0.3490566, g: 0.19745168, b: 0.12348701, a: 1}
   head: {fileID: 9146654426763522033}
-  hair: {fileID: 3139220215694560370}
+  hair: {fileID: 3248390277006036792}
   hair2: {fileID: 6751118464844200160}
-  brows: {fileID: 3248390277006036792}
+  brows: {fileID: 3139220215694560370}
   eyes: {fileID: 2756001628382121791}
   mouth: {fileID: 42259103228667182}
