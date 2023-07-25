@@ -12,7 +12,7 @@ public class PatientManager : Singleton<PatientManager> {
         patient.ResponsibleEmployees.Add(employee);
     }
 
-    void Awake() {
+    void Start() {
         TimeManager.Instance.MinuteTickEvent += OnMinuteTick;
     }
 

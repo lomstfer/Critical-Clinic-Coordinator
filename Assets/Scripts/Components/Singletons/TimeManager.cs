@@ -19,7 +19,6 @@ public class TimeManager : Singleton<TimeManager> {
             yield return new WaitForSeconds(60 / Settings.timeSpeed);
             ElapsedTime++;
             UpdateDigitalTime();
-            print(ElapsedTime);
             MinuteTickEvent?.Invoke();
         }
     }
