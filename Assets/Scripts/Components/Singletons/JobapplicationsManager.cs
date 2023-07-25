@@ -14,7 +14,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
 
     public event Action<Jobapplication> SelectJobApplicationEvent;
 
-    List<Jobapplication> _jobapplications = new();
+    Dictionary<GameObject, Jobapplication> _jobapplications = new();
 
     void Start() {
         StartCoroutine(AddJobapplicationTimer());
@@ -32,7 +32,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
         Jobapplication jobapplicationData = JobapplicationGenerator.GenerateNewJobapplication();
         GameObject mail = Instantiate(mailPrefab, mailListContent);
         mail.GetComponent<JobapplicationScript>().SetJobapplicationData(jobapplicationData);
-        _jobapplications.Add(jobapplicationData);
+        _jobapplications.Add(mail, jobapplicationData);
     }
 
     public void SelectJobApplication(Jobapplication jobapplication) {

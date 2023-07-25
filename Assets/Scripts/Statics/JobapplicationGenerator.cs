@@ -12,11 +12,6 @@ public static class JobapplicationGenerator {
         jobapplicationEmployee.FirstName = jobapplicationEmployee.FaceId[0] == 0 ? NameGenerator.GetRandomMaleName() : NameGenerator.GetRandomFemaleName();
         jobapplicationEmployee.LastName = NameGenerator.GetRandomLastName();
 
-        // Profession
-        Array professionValues = Enum.GetValues(typeof(Profession));
-        jobapplicationEmployee.Profession = (Profession)professionValues.GetValue(UnityEngine.Random.Range(0, professionValues.Length));
-        //
-
         // Skills
         Array skillsValues = Enum.GetValues(typeof(Skill));
         int amountOfSkills = UnityEngine.Random.Range(1, skillsValues.Length);

@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,6 +6,8 @@ using UnityEngine;
 public class TimeManager : Singleton<TimeManager> {
     public static int ElapsedTime { get; private set; }
     public static int[] DigitalTime { get; private set; }
+
+    public event Action MinuteTickEvent;
 
     void Start() {
         DigitalTime = new int[4];
@@ -17,6 +20,7 @@ public class TimeManager : Singleton<TimeManager> {
             ElapsedTime++;
             UpdateDigitalTime();
             print(ElapsedTime);
+            MinuteTickEvent?.Invoke();
         }
     }
 

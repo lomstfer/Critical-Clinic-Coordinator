@@ -22,7 +22,6 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
         introduction.text = jobapplication.Introduction;
 
         employeeInfo.text = "";
-        employeeInfo.text += "\t* " + jobapplication.EmployeeData.Profession + "\n";
         employeeInfo.text += "\t* ";
         for (int i = 0; i < jobapplication.EmployeeData.Skills.Length; i++) {
             if (i > 0 && i < jobapplication.EmployeeData.Skills.Length) {
