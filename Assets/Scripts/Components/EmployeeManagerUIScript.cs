@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class EmployeeManagerUIScript : MonoBehaviour {
-    void Start() {
-        
+    [SerializeField] GameObject employeeUIPrefab;
+    [SerializeField] Transform employeeUIContent;
+
+    public void AddEmployee(Employee employee) { 
+        GameObject employeeUI = Instantiate(employeeUIPrefab, employeeUIContent);
+        employeeUI.GetComponent<EmployeeUIScript>().SetData(employee);
     }
 
-    void Update() {
-        
-    }
 }
