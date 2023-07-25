@@ -5,9 +5,11 @@ using TMPro;
 
 
 public class GorupchatMessageScript : MonoBehaviour {
-    [SerializeField] TextMeshProUGUI messageText;
+    [SerializeField] TextMeshProUGUI message;
+    [SerializeField] TextMeshProUGUI nameT;
 
     public void SetMessageData(GroupchatMessage messageData) {
-        messageText.text = messageData.Message;
+        message.text = messageData.Message;
+        nameT.text = messageData.Sender.FirstName + " " + messageData.Sender.LastName;
     }
 }

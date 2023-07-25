@@ -16,6 +16,8 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
 
     Dictionary<GameObject, Jobapplication> _jobapplications = new();
 
+    Jobapplication _selectedJobapplication = null;
+
     void Start() {
         StartCoroutine(AddJobapplicationTimer());
     }
@@ -37,5 +39,11 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
 
     public void SelectJobApplication(Jobapplication jobapplication) {
         SelectJobApplicationEvent?.Invoke(jobapplication);
+        _selectedJobapplication = jobapplication;
+    }
+
+    public void AcceptSelectedJobApplication() {
+        if (_selectedJobapplication != null)
+            EmployeeManager.Instance.AddEmployee(_selectedJobapplication.EmployeeData);
     }
 }

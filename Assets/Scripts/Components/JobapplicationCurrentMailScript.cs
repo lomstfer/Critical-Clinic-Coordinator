@@ -32,4 +32,8 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
 
         FaceGenerator.Instance.ApplyFaceId(jobapplication.EmployeeData.FaceId);
     }
+
+    public void AcceptJobApplication() {
+        JobapplicationsManager.Instance.AcceptSelectedJobApplication();
+    }
 }
