@@ -18,6 +18,9 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     [SerializeField] Sprite[] femaleEyes;
     [SerializeField] Sprite[] femaleMouths;
 
+    [Header("Color")]
+    [SerializeField] ColorProfile[] colorProfiles;
+
     [Header("Images")]
     [SerializeField] Image head;
     [SerializeField] Image hair;
@@ -26,7 +29,7 @@ public class FaceGenerator : Singleton<FaceGenerator> {
     [SerializeField] Image mouth;
 
     public int[] GenerateNewFaceId() {
-        int[] id = new int[6];
+        int[] id = new int[7];
         id[0] = Random.Range(0, 1);
         bool isMale = id[0] == 0 ? true : false;
         id[1] = Random.Range(0, isMale ? maleHeads.Length : femaleHeads.Length);
@@ -34,6 +37,7 @@ public class FaceGenerator : Singleton<FaceGenerator> {
         id[3] = Random.Range(0, isMale ? maleBrows.Length : femaleBrows.Length);
         id[4] = Random.Range(0, isMale ? maleEyes.Length : femaleEyes.Length);
         id[5] = Random.Range(0, isMale ? maleMouths.Length : femaleMouths.Length);
+        id[6] = Random.Range(0, colorProfiles.Length);
         return id;
     }
 
@@ -45,5 +49,17 @@ public class FaceGenerator : Singleton<FaceGenerator> {
         brows.sprite = isMale ? maleBrows[id[3]] : femaleBrows[id[3]];
         eyes.sprite = isMale ? maleEyes[id[4]] : femaleEyes[id[4]];
         mouth.sprite = isMale ? maleMouths[id[5]] : femaleMouths[id[5]];
+        
+        ColorProfile colors = colorProfiles[id[6]];
+        hair.color = colors.Hair;
+        head.color = colors.Skin;
+        mouth.color = colors.Lips;
+    }
+
+    [System.Serializable]
+    struct ColorProfile {
+        public Color Hair;
+        public Color Skin;
+        public Color Lips;
     }
 }
