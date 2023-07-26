@@ -5,7 +5,7 @@ using TMPro;
 
 public class EmployeeUIScript : MonoBehaviour {
     [SerializeField] Face face;
-    [SerializeField] TextMeshProUGUI name;
+    [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
 
     Employee _employeeData;

@@ -6,7 +6,7 @@ using TMPro;
 
 public class JobapplicationCurrentMailScript : MonoBehaviour {
     [SerializeField] Face face;
-    [SerializeField] TextMeshProUGUI name;
+    [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
 
     void Start() {
