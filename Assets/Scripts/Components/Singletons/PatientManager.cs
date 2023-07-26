@@ -12,7 +12,7 @@ public class PatientManager : Singleton<PatientManager> {
     public event Action<Patient> NewPatient;
     public event Action<Patient> PatientDied;
 
-    public List<Patient> _patientsToRemove = new();
+    List<Patient> _patientsToRemove = new();
 
     public void AssignEmployeeToPatient(Patient patient, Employee employee) {
         bool canHelp = patient.CanGetHelpBy(employee);

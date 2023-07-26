@@ -37,7 +37,7 @@ public class GorupchatMessageScript : MonoBehaviour {
         nameT.text = messageData.Sender.FirstName + " " + messageData.Sender.LastName;
         string t = "";
         for (int i = 0; i < 4; i++) {
-            t += TimeManager.DigitalTime[i];
+            t += TimeManager.DigitalTime[i].ToString();
             if (i == 1) {
                 t += ":";
             }
