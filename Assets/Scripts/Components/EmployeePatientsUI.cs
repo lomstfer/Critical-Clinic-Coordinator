@@ -12,7 +12,7 @@ public class EmployeePatientsUI : MonoBehaviour {
 
     void Start() {
         PatientManager.Instance.NewPatient += AddPatient;  
-        PatientManager.Instance.PatientDied += RemovePatient;
+        PatientManager.Instance.RemovePatient += RemovePatient;
     }
 
     public void UpdateData(Employee employee) {

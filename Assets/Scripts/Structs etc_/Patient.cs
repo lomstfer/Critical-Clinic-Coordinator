@@ -18,7 +18,7 @@ public class Patient {
     // Ticking down by the minute by 1 and up by 2 if ResponsibleEmployees.Count is >= SyndromeExtremeness;
     public int Healthyness;
 
-    public int GetSyndromesLeftToHeal() {
+    public Skill[] GetSyndromesLeftToHeal() {
         List<Skill> syndromesLeft = Syndromes.ToList();
 
         foreach (Employee emp in ResponsibleEmployees) {
@@ -27,12 +27,13 @@ public class Patient {
                     if (syndromesLeft[i] == emp.Skills[j]) {
                         syndromesLeft.Remove(syndromesLeft[i]);
                         i--;
+                        break;
                     }
                 }
             }
         }
 
-        return syndromesLeft.Count;
+        return syndromesLeft.ToArray();
     }
 
     public bool CanGetHelpBy(Employee employee) {

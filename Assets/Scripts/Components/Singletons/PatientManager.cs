@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class PatientManager : Singleton<PatientManager> {
@@ -10,7 +11,7 @@ public class PatientManager : Singleton<PatientManager> {
     public List<Patient> Patients = new();
 
     public event Action<Patient> NewPatient;
-    public event Action<Patient> PatientDied;
+    public event Action<Patient> RemovePatient;
 
     List<Patient> _patientsToRemove = new();
 
@@ -26,16 +27,35 @@ public class PatientManager : Singleton<PatientManager> {
             return;
         }
 
+
         patient.ResponsibleEmployees.Add(employee);
 
-        int syndromesLeft = patient.GetSyndromesLeftToHeal();
-        if (syndromesLeft > 0) {
-            GroupchatManager.Instance.AddMessage(new GroupchatMessage
-            {
-                Sender = employee,
-                Message = "I need some help with the patient named " + patient.FirstName + " " + patient.LastName + "."
-            });
+        GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        {
+            Sender = employee,
+            Message = "I'll be right there, " + patient.FirstName + " " + patient.LastName + "!"
+        });
+
+
+        string infoMessage = "";
+
+        if (patient.SyndromeExtremeness > patient.ResponsibleEmployees.Count) {
+            infoMessage += "More people to " + patient.FirstName + " " + patient.LastName + "!";
         }
+
+        Skill[] syndromesLeft = patient.GetSyndromesLeftToHeal();
+        if (syndromesLeft.Length > 0) {
+            infoMessage += "To heal " + patient.FirstName + " " + patient.LastName + " I'll need some help with " + Utils.GetSkillsAsString(syndromesLeft);
+        }
+
+        if (infoMessage.Length == 0) 
+            return;
+
+        GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        {
+            Sender = employee,
+            Message = infoMessage
+        });
     }
 
     public void RemoveEmployeeFromPatient(Patient patient, Employee employee) {
@@ -49,8 +69,8 @@ public class PatientManager : Singleton<PatientManager> {
 
     IEnumerator SpawnPatients() {
         while (true) {
-            SpawnPatient();
             yield return new WaitForSeconds(UnityEngine.Random.Range(spawnNewPatientTime -  spawnNewPatientRandomnessTime, spawnNewPatientTime + spawnNewPatientRandomnessTime));
+            SpawnPatient();
         }
     }
 
@@ -80,7 +100,7 @@ public class PatientManager : Singleton<PatientManager> {
         patient.Healthyness -= 1;
 
         if (patient.Healthyness < 0) {
-            PatientDied?.Invoke(patient);
+            RemovePatient?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null},
@@ -92,6 +112,16 @@ public class PatientManager : Singleton<PatientManager> {
 
         if (patient.ResponsibleEmployees.Count >= patient.SyndromeExtremeness) {
             patient.Healthyness += 2;
+        }
+
+        if (patient.Healthyness >= 100) {
+            RemovePatient?.Invoke(patient);
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null },
+                Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " is now fully healed! Good work team!",
+            });
+            _patientsToRemove.Add(patient);
         }
     }
 }
