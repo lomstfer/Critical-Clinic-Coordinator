@@ -8,7 +8,10 @@ public class PatientUIScript : MonoBehaviour {
     [SerializeField] TextMeshProUGUI syndromes;
     [SerializeField] TextMeshProUGUI assignedEmployees;
 
-    public void SetData(Patient patientData) {
+    Patient _patient;
+    Employee _employee;
+
+    public void SetData(Patient patientData, Employee employeeData) {
         nameT.text = patientData.FirstName + " " + patientData.LastName;
         syndromes.text = "";
         for (int i = 0; i < patientData.Syndromes.Length; i++) {
@@ -17,6 +20,17 @@ public class PatientUIScript : MonoBehaviour {
             }
             syndromes.text += patientData.Syndromes[i].ToString();
         }
-        assignedEmployees.text = patientData.ResponsibleEmployees.Count.ToString() + "/" + patientData.SyndromeExtremeness.ToString(); 
+        assignedEmployees.text = patientData.ResponsibleEmployees.Count.ToString() + "/" + patientData.SyndromeExtremeness.ToString();
+
+        _patient = patientData;
+        _employee = employeeData;
+    }
+
+    public void Assign() {
+        PatientManager.Instance.AssignEmployeeToPatient(_patient, _employee);
+    }
+
+    public void Remove() {
+        PatientManager.Instance.RemoveEmployeeFromPatient(_patient, _employee);
     }
 }

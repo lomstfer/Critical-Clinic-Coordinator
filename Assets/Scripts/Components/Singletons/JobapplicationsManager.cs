@@ -15,10 +15,9 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
 
     public event Action<Jobapplication> SelectJobApplicationEvent;
 
-    Dictionary<GameObject, Jobapplication> _jobapplications = new();
+    Dictionary<Jobapplication, GameObject> _jobapplications = new();
 
     Jobapplication _selectedJobapplication = null;
-    GameObject _selectedJobapplicationGO = null;
 
     void Start() {
         StartCoroutine(AddJobapplicationTimer());
@@ -40,19 +39,18 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
         Jobapplication jobapplicationData = JobapplicationGenerator.GenerateNewJobapplication();
         GameObject mail = Instantiate(mailPrefab, mailListContent);
         mail.GetComponent<JobapplicationScript>().SetJobapplicationData(jobapplicationData);
-        _jobapplications.Add(mail, jobapplicationData);
+        _jobapplications.Add(jobapplicationData, mail);
     }
 
     public void SelectJobApplication(Jobapplication jobapplication, GameObject gameObject) {
         SelectJobApplicationEvent?.Invoke(jobapplication);
         _selectedJobapplication = jobapplication;
-        _selectedJobapplicationGO = gameObject;
     }
 
     public void AcceptSelectedJobApplication() {
         if (_selectedJobapplication != null) {
             EmployeeManager.Instance.AddEmployee(_selectedJobapplication.EmployeeData);
-            Destroy(_selectedJobapplicationGO);
+            Destroy(_jobapplications[_selectedJobapplication]);
             _selectedJobapplication = null;
         }
     }

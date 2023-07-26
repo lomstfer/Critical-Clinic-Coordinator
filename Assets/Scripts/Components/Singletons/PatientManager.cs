@@ -14,8 +14,32 @@ public class PatientManager : Singleton<PatientManager> {
 
     public List<Patient> _patientsToRemove = new();
 
-    public void AssignPatientToEmployee(Patient patient, Employee employee) {
+    public void AssignEmployeeToPatient(Patient patient, Employee employee) {
+        bool canHelp = patient.CanGetHelpBy(employee);
+
+        if (!canHelp) {
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = employee,
+                Message = "I don't know how to help the patient named " + patient.FirstName + " " + patient.LastName + ". I'm sorry."
+            });
+            return;
+        }
+
         patient.ResponsibleEmployees.Add(employee);
+
+        int syndromesLeft = patient.GetSyndromesLeftToHeal();
+        if (syndromesLeft > 0) {
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = employee,
+                Message = "I need some help with the patient named " + patient.FirstName + " " + patient.LastName + "."
+            });
+        }
+    }
+
+    public void RemoveEmployeeFromPatient(Patient patient, Employee employee) {
+        patient.ResponsibleEmployees.Remove(employee);
     }
 
     void Start() {
@@ -34,10 +58,11 @@ public class PatientManager : Singleton<PatientManager> {
         Patient p = PatientGenerator.GenerateNewPatient();
         Patients.Add(p);
         NewPatient?.Invoke(p);
-        //GroupchatManager.Instance.AddMessage(new GroupchatMessage
-        //{
-            
-        //});
+        GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        {
+            Sender = new Employee { FirstName = "Ambulance", LastName = "", FaceId = null, Skills = null },
+            Message = "New patient!\nName: " + p.FirstName + " " + p.LastName + "\nSyndrome: " + Utils.GetSkillsAsString(p.Syndromes)
+        }) ;
     }
 
     void OnMinuteTick() {
@@ -64,8 +89,6 @@ public class PatientManager : Singleton<PatientManager> {
             _patientsToRemove.Add(patient);
             return;
         }
-
-        Debug.Log(patient.FirstName + " " + patient.Healthyness.ToString());
 
         if (patient.ResponsibleEmployees.Count >= patient.SyndromeExtremeness) {
             patient.Healthyness += 2;

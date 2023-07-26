@@ -18,13 +18,7 @@ public class EmployeeUIScript : MonoBehaviour {
         face.ApplyFaceId(employeeData.FaceId);
 
         name.text = employeeData.FirstName + " " + employeeData.LastName;
-        skills.text = "";
-        for (int i = 0; i < employeeData.Skills.Length; i++) {
-            if (i > 0 && i < employeeData.Skills.Length) {
-                skills.text += ", ";
-            }
-            skills.text += employeeData.Skills[i].ToString();
-        }
+        skills.text = Utils.GetSkillsAsString(employeeData.Skills);
     }
 
     public void RemoveSelf() {

@@ -16,13 +16,7 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
     public void OnSelectJobApplicationEvent(Jobapplication jobapplication) {
         name.text = jobapplication.EmployeeData.FirstName + " " + jobapplication.EmployeeData.LastName;
 
-        skills.text = "";
-        for (int i = 0; i < jobapplication.EmployeeData.Skills.Length; i++) {
-            if (i > 0 && i < jobapplication.EmployeeData.Skills.Length) {
-                skills.text += ",\n";
-            }
-            skills.text += jobapplication.EmployeeData.Skills[i].ToString();
-        }
+        skills.text = Utils.GetSkillsAsString(jobapplication.EmployeeData.Skills);
 
         face.ApplyFaceId(jobapplication.EmployeeData.FaceId);
     }

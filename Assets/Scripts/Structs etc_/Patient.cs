@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class Patient {
@@ -15,5 +16,33 @@ public class Patient {
 
     // 100 is healthy, 0 is dead.
     // Ticking down by the minute by 1 and up by 2 if ResponsibleEmployees.Count is >= SyndromeExtremeness;
-    public int Healthyness; 
+    public int Healthyness;
+
+    public int GetSyndromesLeftToHeal() {
+        List<Skill> syndromesLeft = Syndromes.ToList();
+
+        foreach (Employee emp in ResponsibleEmployees) {
+            for (int i = 0; i < syndromesLeft.Count; i++) {
+                for (int j = 0; j < emp.Skills.Length; j++) {
+                    if (syndromesLeft[i] == emp.Skills[j]) {
+                        syndromesLeft.Remove(syndromesLeft[i]);
+                        i--;
+                    }
+                }
+            }
+        }
+
+        return syndromesLeft.Count;
+    }
+
+    public bool CanGetHelpBy(Employee employee) {
+        for (int i = 0; i < Syndromes.Length; i++) {
+            for (int j = 0; j < employee.Skills.Length; j++) {
+                if (Syndromes[i] == employee.Skills[j]) {
+                    return true;
+                }
+            }
+        }
+        return false;
+    }
 }
