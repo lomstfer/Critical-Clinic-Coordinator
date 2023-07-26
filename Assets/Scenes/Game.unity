@@ -4941,6 +4941,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e1a0d8124f1ae334783a88c8a09db999, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  spawnNewPatientTime: 0
+  spawnNewPatientTimeRandomNess: 0
 --- !u!4 &1723125041
 Transform:
   m_ObjectHideFlags: 0
