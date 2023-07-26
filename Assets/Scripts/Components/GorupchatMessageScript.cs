@@ -42,6 +42,6 @@ public class GorupchatMessageScript : MonoBehaviour {
                 t += ":";
             }
         }
-        time.text = "Time Recieved: " + t;
+        time.text = t;
     }
 }

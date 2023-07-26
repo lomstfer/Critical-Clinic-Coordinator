@@ -14,8 +14,8 @@ public class CameraMovement : MonoBehaviour {
 
     void Start() {
         centerPosition = Vector3.Lerp(Monitors[0].position, Monitors[1].position, .5f) + offset;
-        transform.position = Vector3.Lerp(centerPosition, Monitors[0].position, headMovement);
-        transform.rotation = Quaternion.LookRotation(Monitors[0].position - transform.position);
+        transform.position = Vector3.Lerp(centerPosition, Monitors[1].position, headMovement);
+        transform.rotation = Quaternion.LookRotation(Monitors[1].position - transform.position);
     }
 
     void Update() {
