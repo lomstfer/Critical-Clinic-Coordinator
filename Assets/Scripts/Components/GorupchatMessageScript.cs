@@ -5,8 +5,10 @@ using TMPro;
 using UnityEngine.UI;
 
 public class GorupchatMessageScript : MonoBehaviour {
-    [SerializeField] TextMeshProUGUI message;
     [SerializeField] TextMeshProUGUI nameT;
+    [SerializeField] TextMeshProUGUI message;
+    [SerializeField] TextMeshProUGUI time;
+
 
     void Start() {
         StartCoroutine(FixBuggyUI());
@@ -33,5 +35,13 @@ public class GorupchatMessageScript : MonoBehaviour {
     public void SetMessageData(GroupchatMessage messageData) {
         message.text = messageData.Message;
         nameT.text = messageData.Sender.FirstName + " " + messageData.Sender.LastName;
+        string t = "";
+        for (int i = 0; i < 4; i++) {
+            t += TimeManager.DigitalTime[i];
+            if (i == 1) {
+                t += ":";
+            }
+        }
+        time.text = "Time Recieved: " + t;
     }
 }
