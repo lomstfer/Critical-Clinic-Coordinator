@@ -15,7 +15,7 @@ public class CursorMovement : MonoBehaviour {
     void Update() {
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
-        Vector2 delta = new Vector2(h, v) * Settings.cursorSensititvity;
+        Vector2 delta = new Vector2(h, v) * Settings.CursorSensititvity;
 
         cursor.localPosition += (Vector3)delta;
         cursor.localPosition = new Vector3(

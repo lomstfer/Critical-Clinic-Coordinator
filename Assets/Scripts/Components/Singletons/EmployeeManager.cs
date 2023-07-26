@@ -6,7 +6,7 @@ using UnityEngine;
 public class EmployeeManager : Singleton<EmployeeManager> {
     [HideInInspector] public List<Employee> Employees = new();
 
-    [SerializeField] EmployeeManagerUIScript ui;
+    public EmployeeManagerUIScript Ui;
 
     public void AddEmployee(Employee employee) {
         if (Employees.Contains(employee)) {
@@ -14,7 +14,7 @@ public class EmployeeManager : Singleton<EmployeeManager> {
         }
 
         Employees.Add(employee);
-        ui.AddEmployee(employee);
+        Ui.AddEmployee(employee);
 
         GroupchatManager.Instance.AddMessage(new GroupchatMessage {
             Message = "Yo yo yo, the name's " + employee.FirstName + ". " + "I will work here now.",

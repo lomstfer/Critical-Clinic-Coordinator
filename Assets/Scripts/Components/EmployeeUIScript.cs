@@ -8,6 +8,8 @@ public class EmployeeUIScript : MonoBehaviour {
     [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
 
+    [SerializeField] EmployeePatientsUI patientsUI;
+
     Employee _employeeData;
 
     public void SetData(Employee employeeData) {
@@ -28,5 +30,14 @@ public class EmployeeUIScript : MonoBehaviour {
     public void RemoveSelf() {
         EmployeeManager.Instance.RemoveEmployee(_employeeData);
         Destroy(gameObject);
+    }
+
+    public void ShowMore() {
+        patientsUI.gameObject.SetActive(true);
+        patientsUI.UpdateData(_employeeData);
+    }
+
+    public void HideMore() {
+        patientsUI.gameObject.SetActive(false);
     }
 }

@@ -10,5 +10,4 @@ public class EmployeeManagerUIScript : MonoBehaviour {
         GameObject employeeUI = Instantiate(employeeUIPrefab, employeeUIContent);
         employeeUI.GetComponent<EmployeeUIScript>().SetData(employee);
     }
-
 }

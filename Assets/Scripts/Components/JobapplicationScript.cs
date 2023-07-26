@@ -25,6 +25,6 @@ public class JobapplicationScript : MonoBehaviour {
     }
 
     public void ShowJobApplication() {
-        JobapplicationsManager.Instance.SelectJobApplication(jobapplicationData);
+        JobapplicationsManager.Instance.SelectJobApplication(jobapplicationData, gameObject);
     }
 }

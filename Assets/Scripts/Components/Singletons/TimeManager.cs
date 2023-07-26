@@ -16,7 +16,7 @@ public class TimeManager : Singleton<TimeManager> {
 
     IEnumerator TimeCounter() {
         while (true) {
-            yield return new WaitForSeconds(60 / Settings.timeSpeed);
+            yield return new WaitForSeconds(60 / Settings.TimeSpeed);
             ElapsedTime++;
             UpdateDigitalTime();
             MinuteTickEvent?.Invoke();
