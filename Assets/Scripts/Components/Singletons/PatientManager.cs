@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class PatientManager : Singleton<PatientManager> {
+    [SerializeField] float spawnNewPatientTime;
+    [SerializeField] float spawnNewPatientTimeRandomNess;
+
     public List<Patient> Patients = new();
 
     public event Action<Patient> PatientDied;
@@ -14,6 +17,14 @@ public class PatientManager : Singleton<PatientManager> {
 
     void Start() {
         TimeManager.Instance.MinuteTickEvent += OnMinuteTick;
+    }
+
+    IEnumerator SpawnPatients() {
+        while (true) {
+            
+            yield return new WaitForSeconds(UnityEngine.Random.Range(spawnNewPatientTime -  spawnNewPatientTimeRandomNess, spawnNewPatientTime + spawnNewPatientTimeRandomNess));
+        }
+
     }
 
     void OnMinuteTick() {

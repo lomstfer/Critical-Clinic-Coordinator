@@ -23,6 +23,12 @@ public class EmployeeManager : Singleton<EmployeeManager> {
     }
 
     public void RemoveEmployee(Employee employee) {
+        GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        {
+            Message = "Apperently I got fired. Bye bye.",
+            Sender = employee
+        });
+
         Employees.Remove(employee);
     }
 }
