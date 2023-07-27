@@ -8,6 +8,7 @@ public class TimeManager : Singleton<TimeManager> {
     public static int[] DigitalTime { get; private set; }
 
     public event Action MinuteTickEvent;
+    public event Action HourTickEvent;
 
     void Start() {
         DigitalTime = new int[4];
@@ -20,6 +21,9 @@ public class TimeManager : Singleton<TimeManager> {
             ElapsedTime++;
             UpdateDigitalTime();
             MinuteTickEvent?.Invoke();
+            if (ElapsedTime % 60 == 0) {
+                HourTickEvent?.Invoke();
+            }
         }
     }
 

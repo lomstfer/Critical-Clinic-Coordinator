@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public static class JobapplicationGenerator {
-    static float salaryRandomness = 100f;
+    static float salaryRandomness = 5;
 
     public static Jobapplication GenerateNewJobapplication() {
         Jobapplication jobapplication = new Jobapplication();
@@ -37,7 +37,7 @@ public static class JobapplicationGenerator {
 
         jobapplicationEmployee.Skills = tempSkills.ToArray();
 
-        jobapplicationEmployee.Salary = 300f + jobapplicationEmployee.Skills.Length * 10f + UnityEngine.Random.Range(-salaryRandomness, salaryRandomness);
+        jobapplicationEmployee.Salary = 25 + jobapplicationEmployee.Skills.Length * 7 + Mathf.RoundToInt(UnityEngine.Random.Range(-salaryRandomness, salaryRandomness));
         
 
         jobapplication.EmployeeData = jobapplicationEmployee;

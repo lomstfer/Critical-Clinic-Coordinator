@@ -15,7 +15,7 @@ public class ColorGenerator : Singleton<ColorGenerator> {
             return colors[Random.Range(0, colors.Length)];
         }
         else {
-            return remainingColors[Random.Range(0, colors.Length)];
+            return remainingColors[Random.Range(0, remainingColors.Count)];
         }
     }
 }

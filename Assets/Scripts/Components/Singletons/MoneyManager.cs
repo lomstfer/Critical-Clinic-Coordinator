@@ -11,12 +11,12 @@ public class MoneyManager : Singleton<MoneyManager> {
     void Start() {
         PatientManager.Instance.PatientDied += PatientDied;
         PatientManager.Instance.PatientRecovered += PatientRecovered;
-        TimeManager.Instance.MinuteTickEvent += OnMinuteTick;
+        TimeManager.Instance.HourTickEvent += OnHourTick;
     }
 
-    void OnMinuteTick() {
+    void OnHourTick() {
         foreach (Employee emp in EmployeeManager.Instance.Employees) {
-            Money -= emp.Salary / 60f;
+            Money -= emp.Salary;
         }
 
         if (Money < 0) {
