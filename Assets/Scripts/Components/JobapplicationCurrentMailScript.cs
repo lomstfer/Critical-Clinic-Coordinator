@@ -8,6 +8,7 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
     [SerializeField] Face face;
     [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
+    [SerializeField] TextMeshProUGUI salary;
 
     void Start() {
         JobapplicationsManager.Instance.SelectJobApplicationEvent += OnSelectJobApplicationEvent;    
@@ -17,6 +18,8 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
         name.text = jobapplication.EmployeeData.FirstName + " " + jobapplication.EmployeeData.LastName;
 
         skills.text = Utils.GetSkillsAsString(jobapplication.EmployeeData.Skills);
+
+        salary.text = jobapplication.EmployeeData.Salary.ToString("0");
 
         face.ApplyFaceId(jobapplication.EmployeeData.FaceId);
     }

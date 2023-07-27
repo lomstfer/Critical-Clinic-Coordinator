@@ -8,6 +8,6 @@ public class Employee {
     public string LastName;
     public int[] FaceId;
     public Skill[] Skills;
-
     public Patient AssignedPatient = null;
+    public float Salary;
 }

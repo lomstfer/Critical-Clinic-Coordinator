@@ -12,6 +12,8 @@ public class PatientManager : Singleton<PatientManager> {
 
     public event Action<Patient> NewPatient;
     public event Action<Patient> RemovePatient;
+    public event Action<Patient> PatientDied;
+    public event Action<Patient> PatientRecovered;
 
     List<Patient> _patientsToRemove = new();
 
@@ -124,6 +126,7 @@ public class PatientManager : Singleton<PatientManager> {
 
         if (patient.Healthyness < 0) {
             RemovePatient?.Invoke(patient);
+            PatientDied?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null},
@@ -139,10 +142,11 @@ public class PatientManager : Singleton<PatientManager> {
 
         if (patient.Healthyness >= 100) {
             RemovePatient?.Invoke(patient);
+            PatientRecovered?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null },
-                Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " is now fully healed! Good work team!",
+                Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " has now fully recovered! Good work team!",
             });
             foreach (Employee emp in patient.ResponsibleEmployees) {
                 emp.AssignedPatient = null;
