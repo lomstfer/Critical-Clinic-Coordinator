@@ -16,6 +16,21 @@ public class PatientManager : Singleton<PatientManager> {
     List<Patient> _patientsToRemove = new();
 
     public void AssignEmployeeToPatient(Patient patient, Employee employee) {
+        // check if already has a patient
+        foreach (Patient p in PatientManager.Instance.Patients) {
+            foreach (Employee e in p.ResponsibleEmployees) {
+                if (e == employee) {
+                    GroupchatManager.Instance.AddMessage(new GroupchatMessage
+                    {
+                        Sender = employee,
+                        Message = "I'm busy! I can't help " + patient.FirstName + " " + patient.LastName + " as well as " + p.FirstName + " " + p.LastName + ". You should know that @Player!."
+                    });
+
+                    return;
+                }
+            }
+        }
+
         bool canHelp = patient.CanGetHelpBy(employee);
 
         if (!canHelp) {
