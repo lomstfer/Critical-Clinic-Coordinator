@@ -12,7 +12,7 @@ public static class PatientGenerator {
         patient.LastName = NameGenerator.GetRandomLastName();
 
         patient.Healthyness = UnityEngine.Random.Range(10, 60);
-        patient.SyndromeExtremeness = UnityEngine.Random.Range(1, 3);
+        //patient.SyndromeExtremeness = UnityEngine.Random.Range(1, 3);
 
         // Syndromes
         Array syndromesValues = Enum.GetValues(typeof(Skill));

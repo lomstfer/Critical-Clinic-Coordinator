@@ -17,19 +17,17 @@ public class PatientManager : Singleton<PatientManager> {
 
     public void AssignEmployeeToPatient(Patient patient, Employee employee) {
         // check if already has a patient
-        foreach (Patient p in PatientManager.Instance.Patients) {
-            foreach (Employee e in p.ResponsibleEmployees) {
-                if (e == employee) {
-                    GroupchatManager.Instance.AddMessage(new GroupchatMessage
-                    {
-                        Sender = employee,
-                        Message = "I'm busy! I can't help " + patient.FirstName + " " + patient.LastName + " as well as " + p.FirstName + " " + p.LastName + ". You should know that @Player!."
-                    });
-
-                    return;
-                }
-            }
+        if (employee.AssignedPatient != null) {
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = employee,
+                Message = "I'm busy! I can't help " + patient.FirstName + " " + patient.LastName + " as well as " + employee.AssignedPatient.FirstName + " " + employee.AssignedPatient.LastName + ". You should know that @Player!."
+            });
+            return;
         }
+
+        employee.AssignedPatient = patient;
+
 
         bool canHelp = patient.CanGetHelpBy(employee);
 
@@ -54,9 +52,9 @@ public class PatientManager : Singleton<PatientManager> {
 
         string infoMessage = "";
 
-        if (patient.SyndromeExtremeness > patient.ResponsibleEmployees.Count) {
-            infoMessage += "More people to " + patient.FirstName + " " + patient.LastName + "!";
-        }
+        //if (patient.SyndromeExtremeness > patient.ResponsibleEmployees.Count) {
+        //    infoMessage += "More people to " + patient.FirstName + " " + patient.LastName + "!";
+        //}
 
         Skill[] syndromesLeft = patient.GetSyndromesLeftToHeal();
         if (syndromesLeft.Length > 0) {
@@ -75,6 +73,7 @@ public class PatientManager : Singleton<PatientManager> {
 
     public void RemoveEmployeeFromPatient(Patient patient, Employee employee) {
         patient.ResponsibleEmployees.Remove(employee);
+        employee.AssignedPatient = null;
     }
 
     void Start() {
@@ -125,7 +124,7 @@ public class PatientManager : Singleton<PatientManager> {
             return;
         }
 
-        if (patient.ResponsibleEmployees.Count >= patient.SyndromeExtremeness) {
+        if (patient.GetSyndromesLeftToHeal().Length == 0) {
             patient.Healthyness += 2;
         }
 

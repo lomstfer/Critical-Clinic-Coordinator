@@ -10,7 +10,7 @@ public class Patient {
     public Skill[] Syndromes;
 
     // The amount of ResponsibleEmployees that are necessary to heal;
-    public int SyndromeExtremeness;
+    //public int SyndromeExtremeness;
     
     public List<Employee> ResponsibleEmployees = new();
 

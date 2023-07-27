@@ -8,9 +8,7 @@ public class EmployeeUIScript : MonoBehaviour {
     [SerializeField] new TextMeshProUGUI name;
     [SerializeField] TextMeshProUGUI skills;
 
-    [SerializeField] EmployeePatientsUI patientsUI;
-
-    Employee _employeeData;
+    Employee _employeeData = null;
 
     public void SetData(Employee employeeData) {
         _employeeData = employeeData;
@@ -26,12 +24,7 @@ public class EmployeeUIScript : MonoBehaviour {
         Destroy(gameObject);
     }
 
-    public void ShowMore() {
-        patientsUI.gameObject.SetActive(true);
-        patientsUI.SpawnCurrentPatients(_employeeData);
-    }
-
-    public void HideMore() {
-        patientsUI.gameObject.SetActive(false);
+    public void ShowAllPatients() {
+        PatientUIManager.Instance.Show(_employeeData);
     }
 }
