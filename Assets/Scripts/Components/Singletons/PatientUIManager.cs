@@ -20,7 +20,7 @@ public class PatientUIManager : Singleton<PatientUIManager> {
         gameObject.SetActive(false);
     }
 
-    void Start() {
+    public void SubscribeToEvents() {
         PatientManager.Instance.NewPatient += NewPatient;
         PatientManager.Instance.RemovePatient += RemovePatient;
     }

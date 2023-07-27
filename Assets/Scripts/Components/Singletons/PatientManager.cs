@@ -18,6 +18,14 @@ public class PatientManager : Singleton<PatientManager> {
     public void AssignEmployeeToPatient(Patient patient, Employee employee) {
         // check if already has a patient
         if (employee.AssignedPatient != null) {
+            if (patient == employee.AssignedPatient) {
+                GroupchatManager.Instance.AddMessage(new GroupchatMessage
+                {
+                    Sender = employee,
+                    Message = "I'm already helping " + patient.FirstName + " " + patient.LastName + "!"
+                });
+                return;
+            }
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = employee,
@@ -25,8 +33,6 @@ public class PatientManager : Singleton<PatientManager> {
             });
             return;
         }
-
-        employee.AssignedPatient = patient;
 
 
         bool canHelp = patient.CanGetHelpBy(employee);
@@ -40,6 +46,8 @@ public class PatientManager : Singleton<PatientManager> {
             return;
         }
 
+
+        employee.AssignedPatient = patient;
 
         patient.ResponsibleEmployees.Add(employee);
 
@@ -79,6 +87,7 @@ public class PatientManager : Singleton<PatientManager> {
     void Start() {
         TimeManager.Instance.MinuteTickEvent += OnMinuteTick;
         StartCoroutine(SpawnPatients());
+        PatientUIManager.Instance.SubscribeToEvents();
     }
 
     IEnumerator SpawnPatients() {
@@ -135,6 +144,9 @@ public class PatientManager : Singleton<PatientManager> {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null },
                 Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " is now fully healed! Good work team!",
             });
+            foreach (Employee emp in patient.ResponsibleEmployees) {
+                emp.AssignedPatient = null;
+            }
             _patientsToRemove.Add(patient);
         }
     }
