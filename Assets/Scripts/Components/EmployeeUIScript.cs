@@ -28,7 +28,7 @@ public class EmployeeUIScript : MonoBehaviour {
 
     public void ShowMore() {
         patientsUI.gameObject.SetActive(true);
-        patientsUI.UpdateData(_employeeData);
+        patientsUI.SpawnCurrentPatients(_employeeData);
     }
 
     public void HideMore() {

@@ -8,22 +8,36 @@ public class EmployeePatientsUI : MonoBehaviour {
 
     Dictionary<Patient, GameObject> patients = new();
 
-    Employee _employee;
+    Employee _employee = null;
 
     void Start() {
         PatientManager.Instance.NewPatient += AddPatient;  
         PatientManager.Instance.RemovePatient += RemovePatient;
     }
 
+    void Update() {
+        if (_employee != null) {
+            UpdateData(_employee);
+        }
+    }
+
     public void UpdateData(Employee employee) {
         _employee = employee;
 
-        patients.Clear();
-
-        foreach (Transform child in content) {
-            Destroy(child.gameObject);
+        foreach (var patient in patients) {
+            patient.Value.GetComponent<PatientUIScript>().SetData(patient.Key, _employee);
         }
 
+        //patients.Clear();
+
+        //foreach (Transform child in content) {
+        //    Destroy(child.gameObject);
+        //}
+
+    }
+
+    public void SpawnCurrentPatients(Employee employee) {
+        _employee = employee;
         foreach (Patient patient in PatientManager.Instance.Patients) {
             AddPatient(patient);
         }
