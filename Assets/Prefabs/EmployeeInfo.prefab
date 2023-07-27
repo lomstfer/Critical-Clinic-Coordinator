@@ -583,6 +583,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   face: {fileID: 7505464785624673800}
   name: {fileID: 2564091519644243957}
+  background: {fileID: 8670186353493786441}
   skills: {fileID: 1553904079015266357}
   assignPatientText: {fileID: 4698926062156166744}
   patientInfo: {fileID: 3539126313821294044}

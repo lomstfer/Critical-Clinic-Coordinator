@@ -13,6 +13,7 @@ public static class JobapplicationGenerator {
         jobapplicationEmployee.FaceId = FaceGenerator.Instance.GenerateNewFaceId();
         jobapplicationEmployee.FirstName = jobapplicationEmployee.FaceId[0] == 0 ? NameGenerator.GetRandomMaleName() : NameGenerator.GetRandomFemaleName();
         jobapplicationEmployee.LastName = NameGenerator.GetRandomLastName();
+        jobapplicationEmployee.ColorId = ColorGenerator.Instance.GetColor();
 
         // Skills
         Array skillsValues = Enum.GetValues(typeof(Skill));
@@ -33,7 +34,6 @@ public static class JobapplicationGenerator {
                 tempSkills.Add(skill);
             }
         }
-        //
 
         jobapplicationEmployee.Skills = tempSkills.ToArray();
 

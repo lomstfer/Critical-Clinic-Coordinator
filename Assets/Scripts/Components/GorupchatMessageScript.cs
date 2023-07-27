@@ -35,6 +35,7 @@ public class GorupchatMessageScript : MonoBehaviour {
     public void SetMessageData(GroupchatMessage messageData) {
         message.text = messageData.Message;
         nameT.text = messageData.Sender.FirstName + " " + messageData.Sender.LastName;
+        nameT.color = messageData.Sender.ColorId;
         string t = "";
         for (int i = 0; i < 4; i++) {
             t += TimeManager.DigitalTime[i].ToString();

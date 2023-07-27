@@ -1,11 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class EmployeeUIScript : MonoBehaviour {
     [SerializeField] Face face;
     [SerializeField] new TextMeshProUGUI name;
+    [SerializeField] Image background;
     [SerializeField] TextMeshProUGUI skills;
     [SerializeField] TextMeshProUGUI assignPatientText;
     [SerializeField] TextMeshProUGUI patientInfo;
@@ -26,6 +28,8 @@ public class EmployeeUIScript : MonoBehaviour {
 
     public void SetData(Employee employeeData) {
         _employeeData = employeeData;
+
+        background.color = employeeData.ColorId;
 
         face.ApplyFaceId(employeeData.FaceId);
 
