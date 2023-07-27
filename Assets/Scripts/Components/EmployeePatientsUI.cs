@@ -18,6 +18,8 @@ public class EmployeePatientsUI : MonoBehaviour {
     public void UpdateData(Employee employee) {
         _employee = employee;
 
+        patients.Clear();
+
         foreach (Transform child in content) {
             Destroy(child.gameObject);
         }
