@@ -3005,7 +3005,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0.01}
+  m_AnchoredPosition: {x: 0, y: 0.009994507}
   m_SizeDelta: {x: 1109.8901, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!223 &6784317692519694460
@@ -3280,6 +3280,22 @@ PrefabInstance:
       propertyPath: m_SortingLayer
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: -7511558181221131132, guid: a1ab4516b6c1bd94c97ff6ad73f53781, type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: e5f6ec74716e6ab458cbe152e8947364, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a1ab4516b6c1bd94c97ff6ad73f53781, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: f611967f6dfc09d41ab51cc5abde91f7, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a1ab4516b6c1bd94c97ff6ad73f53781, type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 901227272a2a0b147abfa9bcaef4b329, type: 2}
+    - target: {fileID: -7511558181221131132, guid: a1ab4516b6c1bd94c97ff6ad73f53781, type: 3}
+      propertyPath: m_Materials.Array.data[3]
+      value: 
+      objectReference: {fileID: 2100000, guid: 66229b4ed6ba6144fa9f7717394bbb26, type: 2}
     - target: {fileID: 919132149155446097, guid: a1ab4516b6c1bd94c97ff6ad73f53781, type: 3}
       propertyPath: m_Name
       value: Clipboard
