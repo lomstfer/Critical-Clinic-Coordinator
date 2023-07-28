@@ -50,6 +50,6 @@ public class TimeManager : Singleton<TimeManager> {
     }
 
     void OnApplicationQuit() {
-        SavedData.SaveData();    
+        SavedData.SaveData();
     }
 }

@@ -149,7 +149,7 @@ public class PatientManager : Singleton<PatientManager> {
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null, ColorId = ColorGenerator.Instance.BossColor },
-                Message = "I'm sorry to inform you that we were unable to save " + patient.FirstName + " " + patient.LastName + ". @Player, you better start hiring more competent people!" ,
+                Message = "I'm sorry to inform you that we were unable to save " + patient.FirstName + " " + patient.LastName + ". " + SavedData.Data.PlayerName + " , you better start hiring more competent people!" ,
             });
             _patientsToRemove.Add(patient);
             return;

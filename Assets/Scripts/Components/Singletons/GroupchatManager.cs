@@ -15,6 +15,8 @@ public class GroupchatManager : Singleton<GroupchatManager> {
     public event Action AddedGroupchatMessage;
 
     void Start() {
+        BossStartMessage = BossStartMessage.Replace("@Player", SavedData.Data.PlayerName);
+
         StartCoroutine(SendBossStartMessage());
     }
 

@@ -32,8 +32,10 @@ public class EmployeeContract : MonoBehaviour {
 
     public void GetFullscreen(string text) {
         if (text.ToLower() == "yes") {
+            SavedData.Data.Fullscreen = true;
             Screen.fullScreen = true;
         } else if (text.ToLower() == "no") {
+            SavedData.Data.Fullscreen = true;
             Screen.fullScreen = false;
         }
     }
