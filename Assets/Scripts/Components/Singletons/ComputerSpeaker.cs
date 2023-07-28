@@ -8,16 +8,13 @@ public class ComputerSpeaker : Singleton<ComputerSpeaker> {
         ButtonClick
     }
 
+    [SerializeField] AudioSource audioSource1;
+    [SerializeField] AudioSource audioSource2;
+
     [SerializeField] AudioClip newGroupchatMessage;
     [SerializeField] AudioClip buttonClick;
 
     Dictionary<Sound, AudioClip> _sounds = new();
-
-    AudioSource _audioSource;
-
-    void Awake() {
-        _audioSource = GetComponent<AudioSource>();    
-    }
 
     void Start() {
         _sounds.Add(Sound.NewGroupchatMessage, newGroupchatMessage);    
@@ -25,6 +22,7 @@ public class ComputerSpeaker : Singleton<ComputerSpeaker> {
     }
 
     public void PlaySound(Sound sound) {
-        _audioSource.PlayOneShot(_sounds[sound]);
+        audioSource1.PlayOneShot(_sounds[sound]);
+        audioSource2.PlayOneShot(_sounds[sound]);
     }
 }
