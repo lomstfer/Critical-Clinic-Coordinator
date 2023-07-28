@@ -5,10 +5,11 @@ using UnityEngine;
 public class ComputerSpeaker : Singleton<ComputerSpeaker> {
     public enum Sound {
         NewGroupchatMessage,
-
+        ButtonClick
     }
 
     [SerializeField] AudioClip newGroupchatMessage;
+    [SerializeField] AudioClip buttonClick;
 
     Dictionary<Sound, AudioClip> _sounds = new();
 
@@ -20,10 +21,10 @@ public class ComputerSpeaker : Singleton<ComputerSpeaker> {
 
     void Start() {
         _sounds.Add(Sound.NewGroupchatMessage, newGroupchatMessage);    
+        _sounds.Add(Sound.ButtonClick, buttonClick);    
     }
 
     public void PlaySound(Sound sound) {
-        _audioSource.clip = _sounds[sound];
-        _audioSource.Play();
+        _audioSource.PlayOneShot(_sounds[sound]);
     }
 }
