@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class EmployeeManager : Singleton<EmployeeManager> {
@@ -8,13 +9,15 @@ public class EmployeeManager : Singleton<EmployeeManager> {
 
     public EmployeeManagerUIScript Ui;
 
-    public void AddEmployee(Employee employee) {
+    public async void AddEmployee(Employee employee) {
         if (Employees.Contains(employee)) {
             return;
         }
 
         Employees.Add(employee);
         Ui.AddEmployee(employee);
+
+        await Task.Delay(UnityEngine.Random.Range(700, 1400));
 
         GroupchatManager.Instance.AddMessage(new GroupchatMessage {
             Message = "Yo yo yo, the name's " + employee.FirstName + ". " + "I will work here now.",

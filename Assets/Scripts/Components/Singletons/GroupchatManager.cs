@@ -34,5 +34,7 @@ public class GroupchatManager : Singleton<GroupchatManager> {
         _groupchatMessages.Add(message, messageData);
 
         AddedGroupchatMessage?.Invoke();
+
+        ComputerSpeaker.Instance.PlaySound(ComputerSpeaker.Sound.NewGroupchatMessage);
     }
 }

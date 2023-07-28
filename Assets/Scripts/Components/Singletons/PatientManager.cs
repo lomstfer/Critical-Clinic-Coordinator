@@ -2,6 +2,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using UnityEngine;
 
 public class PatientManager : Singleton<PatientManager> {
@@ -17,7 +18,7 @@ public class PatientManager : Singleton<PatientManager> {
 
     List<Patient> _patientsToRemove = new();
 
-    public void AssignEmployeeToPatient(Patient patient, Employee employee) {
+    public async void AssignEmployeeToPatient(Patient patient, Employee employee) {
         // check if already has a patient
         //if (employee.AssignedPatient != null) {
         //    if (patient == employee.AssignedPatient) {
@@ -36,10 +37,13 @@ public class PatientManager : Singleton<PatientManager> {
         //    return;
         //}
 
+        int waitTime = UnityEngine.Random.Range(200, 600);
+
 
         bool canHelp = patient.CanGetHelpBy(employee);
 
         if (!canHelp) {
+            await Task.Delay(waitTime);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = employee,
@@ -51,6 +55,7 @@ public class PatientManager : Singleton<PatientManager> {
         // switch patient
         if (employee.AssignedPatient != null) {
             if (patient == employee.AssignedPatient) {
+                await Task.Delay(waitTime);
                 GroupchatManager.Instance.AddMessage(new GroupchatMessage
                 {
                     Sender = employee,
@@ -58,6 +63,7 @@ public class PatientManager : Singleton<PatientManager> {
                 });
                 return;
             }
+            await Task.Delay(waitTime);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = employee,
@@ -74,6 +80,7 @@ public class PatientManager : Singleton<PatientManager> {
 
         patient.ResponsibleEmployees.Add(employee);
 
+        await Task.Delay(waitTime);
         GroupchatManager.Instance.AddMessage(new GroupchatMessage
         {
             Sender = employee,
@@ -81,25 +88,16 @@ public class PatientManager : Singleton<PatientManager> {
         });
 
 
-        string infoMessage = "";
-
-        //if (patient.SyndromeExtremeness > patient.ResponsibleEmployees.Count) {
-        //    infoMessage += "More people to " + patient.FirstName + " " + patient.LastName + "!";
-        //}
-
+        await Task.Delay(waitTime);
         Skill[] syndromesLeft = patient.GetSyndromesLeftToHeal();
         if (syndromesLeft.Length > 0) {
-            infoMessage += "To heal " + patient.FirstName + " " + patient.LastName + " I'll need some help with " + Utils.GetSkillsAsString(syndromesLeft);
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = employee,
+                Message = "To heal " + patient.FirstName + " " + patient.LastName + " I'll need some help with " + Utils.GetSkillsAsString(syndromesLeft)
+        });
         }
 
-        if (infoMessage.Length == 0) 
-            return;
-
-        GroupchatManager.Instance.AddMessage(new GroupchatMessage
-        {
-            Sender = employee,
-            Message = infoMessage
-        });
     }
 
     public void RemoveEmployeeFromPatient(Patient patient, Employee employee) {
