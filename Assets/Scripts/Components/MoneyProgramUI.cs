@@ -2,12 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using TMPro;
 
 public class MoneyProgramUI : MonoBehaviour {
     [SerializeField] TextMeshProUGUI moneyText;
     [SerializeField] Transform screen;
     [SerializeField] Transform cursor;
+    [SerializeField] int displayIndex;
+    [SerializeField] GameObject trigger;
 
     RectTransform _rt;
 
@@ -34,6 +37,12 @@ public class MoneyProgramUI : MonoBehaviour {
             s = s.Insert(0, "+");
         }
         moneyText.text = s;
+        if (CursorInfo.Monitor != displayIndex) {
+            trigger.SetActive(false);
+        }
+        else {
+            trigger.SetActive(true);
+        }
     }
 
     void PickUp() {
@@ -46,10 +55,16 @@ public class MoneyProgramUI : MonoBehaviour {
     }
 
     public void StartDrag() {
+        if (CursorInfo.Monitor != displayIndex) {
+            return;
+        }
         CursorInfo.MoneyDragStart();
     }
     
     public void EndDrag() {
+        if (CursorInfo.Monitor != displayIndex) {
+            return;
+        }
         CursorInfo.MoneyDragEnd();
     }
 }
