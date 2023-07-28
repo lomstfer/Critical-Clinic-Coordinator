@@ -1,13 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
-using UnityEditor.Audio;
 using UnityEngine;
 using UnityEngine.Audio;
 
 public class speedchanged : MonoBehaviour {
     [SerializeField] AudioSource aSource;
     [SerializeField] AudioMixer mixer;
-    AudioMixerEffectPlugin pitchShifter;
 
     void Start() {
         //pitchShifter = mixer.
