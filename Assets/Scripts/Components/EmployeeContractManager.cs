@@ -4,24 +4,29 @@ using System.Diagnostics.Contracts;
 using UnityEngine;
 
 public class EmployeeContractManager : MonoBehaviour {
-    [SerializeField] EmployeeContract contract;
+    [SerializeField] Transform contract;
+    [SerializeField] EmployeeContract contractForm;
 
     bool contractVisible = false;
 
+    Vector3 lerpTo;
+
     void Start() {
-        //lerpTo = contract.transform.position;
+        contract.transform.localPosition = new(contract.transform.localPosition.x, -1, contract.transform.localPosition.z);
+        lerpTo = contract.transform.localPosition;
     }
 
     void Update() {
-        //contract.transform.position = Vector2.Lerp(contract.transform.position, lerpTo, Time.deltaTime);
+        contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.deltaTime * 10f);
+
         if (Input.GetKeyDown(KeyCode.Escape)) {
             contractVisible = !contractVisible;
 
             if (contractVisible) {
-                contract.SetData();
-                contract.transform.position = new(contract.transform.position.x, 0, contract.transform.position.z);
+                contractForm.SetData();
+                lerpTo = new Vector3(contract.transform.localPosition.x, 0, contract.transform.localPosition.z);
             } else {
-                contract.transform.position = new(contract.transform.position.x, -100, contract.transform.position.z);
+                lerpTo = new(contract.transform.localPosition.x, -1, contract.transform.localPosition.z);
             }
         }
     }

@@ -14,6 +14,12 @@ public class MoneyManager : Singleton<MoneyManager> {
         TimeManager.Instance.HourTickEvent += OnHourTick;
     }
 
+    void Update() {
+        if (Money > SavedData.Data.Highscore) {
+            SavedData.Data.Highscore = Money;
+        }    
+    }
+
     void OnHourTick() {
         foreach (Employee emp in EmployeeManager.Instance.Employees) {
             Money -= emp.Salary;
