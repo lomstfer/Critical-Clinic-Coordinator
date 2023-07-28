@@ -19,6 +19,36 @@ public class PatientManager : Singleton<PatientManager> {
 
     public void AssignEmployeeToPatient(Patient patient, Employee employee) {
         // check if already has a patient
+        //if (employee.AssignedPatient != null) {
+        //    if (patient == employee.AssignedPatient) {
+        //        GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        //        {
+        //            Sender = employee,
+        //            Message = "I'm already helping " + patient.FirstName + " " + patient.LastName + "!"
+        //        });
+        //        return;
+        //    }
+        //    GroupchatManager.Instance.AddMessage(new GroupchatMessage
+        //    {
+        //        Sender = employee,
+        //        Message = "I'm busy! I can't help " + patient.FirstName + " " + patient.LastName + " as well as " + employee.AssignedPatient.FirstName + " " + employee.AssignedPatient.LastName + ". You should know that @Player!."
+        //    });
+        //    return;
+        //}
+
+
+        bool canHelp = patient.CanGetHelpBy(employee);
+
+        if (!canHelp) {
+            GroupchatManager.Instance.AddMessage(new GroupchatMessage
+            {
+                Sender = employee,
+                Message = "I don't know how to help the patient named " + patient.FirstName + " " + patient.LastName + ". I'm sorry."
+            });
+            return;
+        }
+
+        // switch patient
         if (employee.AssignedPatient != null) {
             if (patient == employee.AssignedPatient) {
                 GroupchatManager.Instance.AddMessage(new GroupchatMessage
@@ -31,20 +61,11 @@ public class PatientManager : Singleton<PatientManager> {
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = employee,
-                Message = "I'm busy! I can't help " + patient.FirstName + " " + patient.LastName + " as well as " + employee.AssignedPatient.FirstName + " " + employee.AssignedPatient.LastName + ". You should know that @Player!."
+                Message = "I guess I won't be helping " + employee.AssignedPatient.FirstName + " " + employee.AssignedPatient.LastName + " anymore... " + "Here I come " + patient.FirstName + " " + patient.LastName + "!"
             });
-            return;
-        }
-
-
-        bool canHelp = patient.CanGetHelpBy(employee);
-
-        if (!canHelp) {
-            GroupchatManager.Instance.AddMessage(new GroupchatMessage
-            {
-                Sender = employee,
-                Message = "I don't know how to help the patient named " + patient.FirstName + " " + patient.LastName + ". I'm sorry."
-            });
+            employee.AssignedPatient.ResponsibleEmployees.Remove(employee);
+            patient.ResponsibleEmployees.Add(employee);
+            employee.AssignedPatient = patient;
             return;
         }
 
@@ -105,7 +126,7 @@ public class PatientManager : Singleton<PatientManager> {
         NewPatient?.Invoke(p);
         GroupchatManager.Instance.AddMessage(new GroupchatMessage
         {
-            Sender = new Employee { FirstName = "Ambulance", LastName = "", FaceId = null, Skills = null },
+            Sender = new Employee { FirstName = "Ambulance", LastName = "", FaceId = null, Skills = null, ColorId=ColorGenerator.Instance.AmbulanceColor },
             Message = "New patient!\nName: " + p.FirstName + " " + p.LastName + "\nSyndrome: " + Utils.GetSkillsAsString(p.Syndromes)
         }) ;
     }
@@ -129,7 +150,7 @@ public class PatientManager : Singleton<PatientManager> {
             PatientDied?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
-                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null},
+                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null, ColorId = ColorGenerator.Instance.BossColor },
                 Message = "I'm sorry to inform you that we were unable to save " + patient.FirstName + " " + patient.LastName + ". @Player, you better start hiring more competent people!" ,
             });
             _patientsToRemove.Add(patient);
@@ -145,7 +166,7 @@ public class PatientManager : Singleton<PatientManager> {
             PatientRecovered?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
-                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null },
+                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null ,  ColorId= ColorGenerator.Instance.BossColor },
                 Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " has now fully recovered! Good work team!",
             });
             foreach (Employee emp in patient.ResponsibleEmployees) {

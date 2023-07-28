@@ -3,8 +3,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class GroupchatScrollToBottom : MonoBehaviour {
+public class GroupchatAutoScroll : MonoBehaviour {
     [SerializeField] ScrollRect scrollRect;
+    [SerializeField] RectTransform content;
 
     void Start () {
         GroupchatManager.Instance.AddedGroupchatMessage += ScrollDown;
@@ -19,11 +20,12 @@ public class GroupchatScrollToBottom : MonoBehaviour {
     }
 
     IEnumerator ScrollDownS() {
-        bool free = scrollRect.verticalNormalizedPosition > 0.1;
+        float d = content.rect.height - ((1f - scrollRect.verticalNormalizedPosition) * content.rect.height);
+        bool autoScroll = d < 10f;
+
         yield return null;
-        yield return null;
-        yield return null;
-        if (!free)
+
+        if (autoScroll)
             scrollRect.verticalNormalizedPosition = 0;
     }
 }

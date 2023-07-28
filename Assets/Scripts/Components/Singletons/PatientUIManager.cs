@@ -1,16 +1,31 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 
 public class PatientUIManager : Singleton<PatientUIManager> {
     [SerializeField] GameObject patientPrefab;
     [SerializeField] Transform patientList;
+    [SerializeField] EmployeeUIScript selectedEmployeeUIScript;
+
+    [SerializeField] Image background;
+    [SerializeField] Image border;
+    [SerializeField] Image scrollBG;
+    [SerializeField] Image scrollHandle;
 
     Employee _selectedEmployee = null;
 
     Dictionary<Patient, GameObject> _patients = new();
 
     public void Show(Employee selectedEmployee) {
+        selectedEmployeeUIScript.SetData(selectedEmployee);
+
+        background.color = selectedEmployee.ColorId;
+        border.color = new(background.color.r * 0.6f, background.color.g * 0.6f, background.color.b * 0.6f, 1f);
+        scrollHandle.color = background.color;
+        scrollBG.color = border.color;
+
         _selectedEmployee = selectedEmployee;
         gameObject.SetActive(true);
     }

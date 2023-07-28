@@ -14,6 +14,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     [SerializeField] float timeRandomness = 0f;
 
     public event Action<Jobapplication> SelectJobApplicationEvent;
+    public event Action<Jobapplication> NewJobApplication;
 
     Dictionary<Jobapplication, GameObject> _jobapplications = new();
 
@@ -40,6 +41,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
         GameObject mail = Instantiate(mailPrefab, mailListContent);
         mail.GetComponent<JobapplicationScript>().SetJobapplicationData(jobapplicationData);
         _jobapplications.Add(jobapplicationData, mail);
+        NewJobApplication?.Invoke(jobapplicationData);
     }
 
     public void SelectJobApplication(Jobapplication jobapplication, GameObject gameObject) {

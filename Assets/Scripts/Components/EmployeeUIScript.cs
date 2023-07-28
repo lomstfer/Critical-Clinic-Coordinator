@@ -6,11 +6,12 @@ using TMPro;
 
 public class EmployeeUIScript : MonoBehaviour {
     [SerializeField] Face face;
-    [SerializeField] new TextMeshProUGUI name;
+    [SerializeField] TextMeshProUGUI nameT;
     [SerializeField] Image background;
     [SerializeField] TextMeshProUGUI skills;
     [SerializeField] TextMeshProUGUI assignPatientText;
     [SerializeField] TextMeshProUGUI patientInfo;
+    [SerializeField] float nameMaxWidth;
 
     Employee _employeeData = null;
 
@@ -18,7 +19,7 @@ public class EmployeeUIScript : MonoBehaviour {
         if (_employeeData != null) {
             if (_employeeData.AssignedPatient != null) {
                 assignPatientText.text = "Switch Patient";
-                patientInfo.text = "Currently Treating:\n" + _employeeData.AssignedPatient.FirstName + " " + _employeeData.AssignedPatient.LastName;
+                patientInfo.text = "Currently Treating:\n  * " + _employeeData.AssignedPatient.FirstName + " " + _employeeData.AssignedPatient.LastName;
             } else {
                 assignPatientText.text = "Assign Patient";
                 patientInfo.text = "";
@@ -33,7 +34,13 @@ public class EmployeeUIScript : MonoBehaviour {
 
         face.ApplyFaceId(employeeData.FaceId);
 
-        name.text = employeeData.FirstName + " " + employeeData.LastName;
+        nameT.text = employeeData.FirstName + " " + employeeData.LastName;
+        nameT.ForceMeshUpdate();
+        while (nameT.textBounds.size.x > nameMaxWidth) {
+            nameT.fontSize -= 0.5f;
+            nameT.ForceMeshUpdate();
+        }
+
         skills.text = Utils.GetSkillsAsString(employeeData.Skills);
     }
 

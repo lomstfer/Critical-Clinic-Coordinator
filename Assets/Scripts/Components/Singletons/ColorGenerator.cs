@@ -6,6 +6,9 @@ using UnityEngine;
 public class ColorGenerator : Singleton<ColorGenerator> {
     [SerializeField] Color[] colors;
 
+    public Color BossColor;
+    public Color AmbulanceColor;
+
     public Color GetColor() {
         List<Color> remainingColors = colors.ToList();
         foreach (Employee emp in EmployeeManager.Instance.Employees) {
