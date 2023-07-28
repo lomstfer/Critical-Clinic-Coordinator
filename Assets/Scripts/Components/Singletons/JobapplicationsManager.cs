@@ -2,12 +2,15 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     [Header("References")]
     [SerializeField] GameObject mailPrefab;
     [SerializeField] Transform mailListContent;
     [SerializeField] GameObject blockingTempContent;
+
+    public Color SelectedJobApplicationColor;
 
     [Header("Data")]
     [SerializeField] float newJobapplicationTime = 10;
@@ -16,16 +19,17 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     public event Action<Jobapplication> SelectJobApplicationEvent;
     public event Action<Jobapplication> NewJobApplication;
 
-    Dictionary<Jobapplication, GameObject> _jobapplications = new();
+    public Jobapplication SelectedJobapplication = null;
 
-    Jobapplication _selectedJobapplication = null;
+    Dictionary<Jobapplication, GameObject> _jobapplications = new();
 
     void Start() {
         StartCoroutine(AddJobapplicationTimer());
     }
 
-    void Update() {    
-        blockingTempContent.SetActive(_selectedJobapplication == null);
+    void Update() {
+        bool hasSelectedApplication = SelectedJobapplication != null;
+        blockingTempContent.SetActive(!hasSelectedApplication);
     }
 
     IEnumerator AddJobapplicationTimer() {
@@ -46,14 +50,14 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
 
     public void SelectJobApplication(Jobapplication jobapplication, GameObject gameObject) {
         SelectJobApplicationEvent?.Invoke(jobapplication);
-        _selectedJobapplication = jobapplication;
+        SelectedJobapplication = jobapplication;
     }
 
     public void AcceptSelectedJobApplication() {
-        if (_selectedJobapplication != null) {
-            EmployeeManager.Instance.AddEmployee(_selectedJobapplication.EmployeeData);
-            Destroy(_jobapplications[_selectedJobapplication]);
-            _selectedJobapplication = null;
+        if (SelectedJobapplication != null) {
+            EmployeeManager.Instance.AddEmployee(SelectedJobapplication.EmployeeData);
+            Destroy(_jobapplications[SelectedJobapplication]);
+            SelectedJobapplication = null;
         }
     }
 }

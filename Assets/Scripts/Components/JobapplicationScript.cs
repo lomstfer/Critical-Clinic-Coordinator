@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 
 public class JobapplicationScript : MonoBehaviour {
@@ -9,6 +10,22 @@ public class JobapplicationScript : MonoBehaviour {
     [SerializeField] TextMeshProUGUI time;
 
     Jobapplication jobapplicationData;
+
+    Image _image;
+    Color _startColor;
+
+    void Awake() {
+        _image = GetComponent<Image>();
+        _startColor = _image.color;
+    }
+
+    void Update() {
+        if (JobapplicationsManager.Instance.SelectedJobapplication == jobapplicationData) {
+            _image.color = JobapplicationsManager.Instance.SelectedJobApplicationColor;
+        } else {
+            _image.color = _startColor;
+        }
+    }
 
     public void SetJobapplicationData(Jobapplication jobapplicationData) {
         this.jobapplicationData = jobapplicationData;
