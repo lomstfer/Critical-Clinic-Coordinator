@@ -7,6 +7,8 @@ public class TimeManager : Singleton<TimeManager> {
     public static int ElapsedTime { get; private set; }
     public static int[] DigitalTime { get; private set; }
 
+    public static float TimeSpeed = 60;
+
     public event Action MinuteTickEvent;
     public event Action HourTickEvent;
 
@@ -17,7 +19,7 @@ public class TimeManager : Singleton<TimeManager> {
 
     IEnumerator TimeCounter() {
         while (true) {
-            yield return new WaitForSeconds(60 / Settings.TimeSpeed);
+            yield return new WaitForSeconds(60 / TimeSpeed);
             ElapsedTime++;
             UpdateDigitalTime();
             MinuteTickEvent?.Invoke();
@@ -45,5 +47,9 @@ public class TimeManager : Singleton<TimeManager> {
             DigitalTime[1] = 0;
             DigitalTime[0] = 0;
         }
+    }
+
+    void OnApplicationQuit() {
+        SavedData.SaveData();    
     }
 }

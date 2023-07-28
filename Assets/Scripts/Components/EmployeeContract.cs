@@ -3,10 +3,21 @@ using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EmployeeContract : MonoBehaviour {
+    [SerializeField] TMP_InputField nameInput;
+    [SerializeField] TMP_InputField mouseSensitivity;
+    [SerializeField] TMP_InputField fullscreen;
+
+    void Start() {
+        nameInput.text = SavedData.Data.PlayerName;
+        mouseSensitivity.text = SavedData.Data.CursorSensititvity.ToString();
+        fullscreen.text = SavedData.Data.Fullscreen ? "yes" : "no";
+    }
+
     public void GetName(string text) {
-        Settings.playerName = text;
+        SavedData.Data.PlayerName = text;
     }
 
     public void GetCursorSensitivity(string text) {
@@ -15,7 +26,7 @@ public class EmployeeContract : MonoBehaviour {
         float sens;
         bool canFloat = float.TryParse(parsed, out sens);
         if (canFloat && sens != 0) {
-            Settings.CursorSensititvity = sens;
+            SavedData.Data.CursorSensititvity = sens;
         }
     }
 
@@ -25,6 +36,10 @@ public class EmployeeContract : MonoBehaviour {
         } else if (text.ToLower() == "no") {
             Screen.fullScreen = false;
         }
+    }
+
+    public void Confirm() {
+        SceneManager.LoadScene("Game");
     }
 
     public void QuitGame() {
