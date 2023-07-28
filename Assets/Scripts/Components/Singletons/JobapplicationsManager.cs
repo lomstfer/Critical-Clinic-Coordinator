@@ -1,6 +1,7 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -19,7 +20,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     public event Action<Jobapplication> SelectJobApplicationEvent;
     public event Action<Jobapplication> NewJobApplication;
 
-    public Jobapplication SelectedJobapplication = null;
+    [NonSerialized] public Jobapplication SelectedJobapplication = null;
 
     Dictionary<Jobapplication, GameObject> _jobapplications = new();
 
