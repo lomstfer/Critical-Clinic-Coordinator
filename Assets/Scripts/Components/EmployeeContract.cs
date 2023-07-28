@@ -11,6 +11,12 @@ public class EmployeeContract : MonoBehaviour {
     [SerializeField] TMP_InputField fullscreen;
 
     void Start() {
+        GetComponent<RectTransform>().eulerAngles += new Vector3(0, 0, UnityEngine.Random.Range(-1.5f, 1.5f));
+
+        SetData();
+    }
+
+    public void SetData() {
         nameInput.text = SavedData.Data.PlayerName;
         mouseSensitivity.text = SavedData.Data.CursorSensititvity.ToString();
         fullscreen.text = SavedData.Data.Fullscreen ? "yes" : "no";

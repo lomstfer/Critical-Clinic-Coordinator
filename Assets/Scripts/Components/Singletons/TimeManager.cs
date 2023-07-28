@@ -48,8 +48,4 @@ public class TimeManager : Singleton<TimeManager> {
             DigitalTime[0] = 0;
         }
     }
-
-    void OnApplicationQuit() {
-        SavedData.SaveData();
-    }
 }
