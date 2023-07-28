@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class CameraMovement : MonoBehaviour {
     [SerializeField] Transform[] Monitors;
-
     [SerializeField] Vector3 offset;
     [SerializeField] float speed;
     [SerializeField] float cursorWeight;
@@ -14,14 +13,14 @@ public class CameraMovement : MonoBehaviour {
 
     void Start() {
         centerPosition = Vector3.Lerp(Monitors[0].position, Monitors[1].position, .5f) + offset;
-        transform.position = Vector3.Lerp(centerPosition, Monitors[1].position, headMovement);
+        transform.position = Vector3.Lerp(centerPosition, Monitors[1].position, headMovement) + offset;
         transform.rotation = Quaternion.LookRotation(Monitors[1].position - transform.position);
     }
 
     void Update() {
         Transform focusedMonitor = Monitors[CursorInfo.Monitor];
 
-        Vector3 targetPos = Vector3.Lerp(centerPosition, focusedMonitor.position, headMovement);
+        Vector3 targetPos = Vector3.Lerp(centerPosition, focusedMonitor.position, headMovement) + offset;
         transform.position = Vector3.Lerp(transform.position, targetPos, Mathf.Clamp01(speed * Time.deltaTime));
 
         Quaternion targetRot = Quaternion.LookRotation(Vector3.Lerp(focusedMonitor.position, CursorInfo.WorldPosition, cursorWeight) - transform.position);
