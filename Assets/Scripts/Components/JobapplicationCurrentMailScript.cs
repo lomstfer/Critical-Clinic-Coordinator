@@ -19,7 +19,7 @@ public class JobapplicationCurrentMailScript : MonoBehaviour {
 
         skills.text = Utils.GetSkillsAsString(jobapplication.EmployeeData.Skills);
 
-        salary.text = jobapplication.EmployeeData.Salary.ToString("0");
+        salary.text = jobapplication.EmployeeData.Salary.ToString("0") + "/hour";
 
         face.ApplyFaceId(jobapplication.EmployeeData.FaceId);
     }

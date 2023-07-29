@@ -4,10 +4,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 
 public class ScreenManager : Singleton<ScreenManager> {
+    [SerializeField] CursorState startState;
     bool freeMove;
 
     void Start() {
-        SetCursorState(CursorState.Screen);
+        SetCursorState(startState);
     }
 
     void Update() {

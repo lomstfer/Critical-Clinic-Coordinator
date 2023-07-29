@@ -28,7 +28,7 @@ public static class SavedData {
     static void SetDefaultData() {
         Data = new DataStruct
         {
-            PlayerName = "Jon Doe",
+            PlayerName = "John Doe",
             CursorSensititvity = 6f,
             Fullscreen = true,
             MusicVolume = 50,
