@@ -28,10 +28,12 @@ public static class SavedData {
     static void SetDefaultData() {
         Data = new DataStruct
         {
+            PlayerName = "Jon Doe",
             CursorSensititvity = 6f,
             Fullscreen = true,
+            MusicVolume = 50,
+            EffectsVolume = 50,
             Highscore = 0,
-            PlayerName = "Jon Doe"
         };
     }
 
@@ -54,8 +56,12 @@ public struct DataStruct {
     public float CursorSensititvity;
     [Key(2)]
     public bool Fullscreen;
+    [Key(3)]
+    public float MusicVolume;
+    [Key(4)]
+    public float EffectsVolume;
 
     // not player changeable
-    [Key(3)]
+    [Key(5)]
     public float Highscore;
 }

@@ -9,6 +9,8 @@ public class EmployeeContract : MonoBehaviour {
     [SerializeField] TMP_InputField nameInput;
     [SerializeField] TMP_InputField mouseSensitivity;
     [SerializeField] TMP_InputField fullscreen;
+    [SerializeField] TMP_InputField musicVolume;
+    [SerializeField] TMP_InputField effectsVolume;
 
     void Start() {
         GetComponent<RectTransform>().eulerAngles += new Vector3(0, 0, UnityEngine.Random.Range(-1.5f, 1.5f));
@@ -20,6 +22,8 @@ public class EmployeeContract : MonoBehaviour {
         nameInput.text = SavedData.Data.PlayerName;
         mouseSensitivity.text = SavedData.Data.CursorSensititvity.ToString();
         fullscreen.text = SavedData.Data.Fullscreen ? "yes" : "no";
+        musicVolume.text = SavedData.Data.MusicVolume.ToString();
+        effectsVolume.text = SavedData.Data.EffectsVolume.ToString();
     }
 
     public void GetName(string text) {
@@ -43,6 +47,26 @@ public class EmployeeContract : MonoBehaviour {
         } else if (text.ToLower() == "no") {
             SavedData.Data.Fullscreen = true;
             Screen.fullScreen = false;
+        }
+    }
+
+    public void GetMusicVolume(string text) {
+        string parsed = text;
+        parsed = parsed.Replace('.', ',');
+        float vol;
+        bool canFloat = float.TryParse(parsed, out vol);
+        if (canFloat) {
+            SavedData.Data.MusicVolume = vol;
+        }
+    }
+
+    public void GetEffectsVolume(string text) {
+        string parsed = text;
+        parsed = parsed.Replace('.', ',');
+        float vol;
+        bool canFloat = float.TryParse(parsed, out vol);
+        if (canFloat) {
+            SavedData.Data.EffectsVolume = vol;
         }
     }
 

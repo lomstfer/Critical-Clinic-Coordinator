@@ -24,6 +24,10 @@ public class ComputerSpeaker : Singleton<ComputerSpeaker> {
         _sounds.Add(Sound.ButtonClick, buttonClick);    
     }
 
+    void Update() {
+        _audioSource.volume = SavedData.Data.EffectsVolume / 100f;
+    }
+
     public void PlaySound(Sound sound) {
         _audioSource.PlayOneShot(_sounds[sound]);
     }

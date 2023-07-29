@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Diagnostics.Contracts;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class EmployeeContractManager : MonoBehaviour {
     [SerializeField] Transform contract;
@@ -11,16 +12,22 @@ public class EmployeeContractManager : MonoBehaviour {
 
     Vector3 lerpTo;
 
+    bool ok;
+
     void Start() {
         contract.transform.localPosition = new(contract.transform.localPosition.x, -1, contract.transform.localPosition.z);
         lerpTo = contract.transform.localPosition;
     }
 
     void Update() {
-        contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.unscaledDeltaTime * 10f);
+        if (contractVisible)
+            contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.unscaledDeltaTime * 10f);
+        else
+            contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.unscaledDeltaTime * 4f);
 
-        if (Input.GetKeyDown(KeyCode.Escape)) {
+        if (Input.GetKeyDown(KeyCode.Escape) || ok) {
             contractVisible = !contractVisible;
+            ok = false;
 
             if (contractVisible) {
                 contractForm.SetData();
@@ -32,6 +39,14 @@ public class EmployeeContractManager : MonoBehaviour {
                 ScreenManager.Instance.SetCursorState(CursorState.Screen);
             }
         }
+    }
+
+    public void Ok() {
+        ok = true;
+    }
+
+    public void Resign() {
+        SceneManager.LoadScene("Menu");
     }
 
     void OnApplicationQuit() {
