@@ -17,7 +17,7 @@ public class EmployeeContractManager : MonoBehaviour {
     }
 
     void Update() {
-        contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.deltaTime * 10f);
+        contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.unscaledDeltaTime * 10f);
 
         if (Input.GetKeyDown(KeyCode.Escape)) {
             contractVisible = !contractVisible;
@@ -25,8 +25,11 @@ public class EmployeeContractManager : MonoBehaviour {
             if (contractVisible) {
                 contractForm.SetData();
                 lerpTo = new Vector3(contract.transform.localPosition.x, 0, contract.transform.localPosition.z);
-            } else {
+                ScreenManager.Instance.SetCursorState(CursorState.Free);
+            } 
+            else {
                 lerpTo = new(contract.transform.localPosition.x, -1, contract.transform.localPosition.z);
+                ScreenManager.Instance.SetCursorState(CursorState.Screen);
             }
         }
     }

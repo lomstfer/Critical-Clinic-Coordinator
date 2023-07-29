@@ -13,6 +13,9 @@ public class CursorMovement : MonoBehaviour {
     }
 
     void Update() {
+        if (!CursorInfo.CanMove) {
+            return;
+        }
         float h = Input.GetAxis("Mouse X");
         float v = Input.GetAxis("Mouse Y");
         Vector2 delta = new Vector2(h, v) * SavedData.Data.CursorSensititvity;

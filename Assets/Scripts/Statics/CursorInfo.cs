@@ -6,6 +6,7 @@ using UnityEngine;
 public static class CursorInfo {
     public static Vector3 WorldPosition;
     public static Vector2 ScreenPosition;
+    public static bool CanMove;
     public static int Monitor;
     public static event Action PickedUpMoneyEvent;
     public static event Action DroppedMoneyEvent;
