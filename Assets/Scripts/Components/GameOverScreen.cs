@@ -1,22 +1,14 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class MusicAudio : MonoBehaviour {
-    AudioSource _audioSource;
-
-    void Awake() {
-        _audioSource = GetComponent<AudioSource>();
-    }
+public class GameOverScreen : MonoBehaviour {
+    [SerializeField] Image image;
+    [SerializeField] GameObject gameOverText;
 
     void Start() {
         MoneyManager.Instance.GameOverEvent += OnGameOver;
-    }
-
-    void Update() {
-        if (!MoneyManager.Instance.GameOver) {
-            _audioSource.volume = SavedData.Data.MusicVolume / 100f;
-        }
     }
 
     void OnGameOver() {
@@ -27,12 +19,22 @@ public class MusicAudio : MonoBehaviour {
 
         int times = Mathf.RoundToInt(MoneyManager.Instance.GameOverTotalTickTime / MoneyManager.Instance.GameOverTickTime);
 
-        float decreasePerTick = _audioSource.volume / (float)times;
-
+        float increasePerTick = 1f / (float)times;
         for (int i = times; i > 0; i--) {
-            _audioSource.volume -= decreasePerTick;
-            _audioSource.pitch -= decreasePerTick;
+            image.color += new Color(0, 0, 0, increasePerTick);
             yield return new WaitForSeconds(MoneyManager.Instance.GameOverTickTime);
         }
+
+        yield return new WaitForSeconds(2f);
+
+        gameOverText.SetActive(true);
+
+        yield return new WaitForSeconds(5f);
+
+        LoadMenu();
+    }
+
+    void LoadMenu() {
+        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
     }
 }

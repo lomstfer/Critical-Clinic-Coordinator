@@ -63,15 +63,15 @@ public class PatientManager : Singleton<PatientManager> {
                 });
                 return;
             }
+            employee.AssignedPatient.ResponsibleEmployees.Remove(employee);
+            patient.ResponsibleEmployees.Add(employee);
+            employee.AssignedPatient = patient;
             await Task.Delay(waitTime);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = employee,
                 Message = "I guess I won't be helping " + employee.AssignedPatient.FirstName + " " + employee.AssignedPatient.LastName + " anymore... " + "Here I come " + patient.FirstName + " " + patient.LastName + "!"
             });
-            employee.AssignedPatient.ResponsibleEmployees.Remove(employee);
-            patient.ResponsibleEmployees.Add(employee);
-            employee.AssignedPatient = patient;
             return;
         }
 

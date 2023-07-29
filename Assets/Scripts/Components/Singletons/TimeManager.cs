@@ -13,6 +13,7 @@ public class TimeManager : Singleton<TimeManager> {
     public event Action HourTickEvent;
 
     void Start() {
+        ElapsedTime = 0;
         DigitalTime = new int[4];
         StartCoroutine(TimeCounter());
     }

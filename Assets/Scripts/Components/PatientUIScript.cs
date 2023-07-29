@@ -30,13 +30,32 @@ public class PatientUIScript : MonoBehaviour {
             Skill s = patientData.Syndromes[i];
             bool stillToHeal = syndromesLeft.Contains(s);
             if (stillToHeal) {
-                syndromes.text += $"{s.ToString().AddColor(Color.red)}";
+                syndromes.text += $"{s.ToString().AddColor(new(1, 0.35f, 0.35f))}";
             } else {
                 syndromes.text += $"{s.ToString().AddColor(Color.green)}";
             }
         }
 
-        health.text = patientData.Healthyness.ToString();
+        if (patientData.Healthyness > 0) {
+            health.text = "AWFUL";
+            health.color = new(1, 0.35f, 0.35f);
+            if (patientData.Healthyness > 20) {
+                health.text = "BAD";
+                health.color = Color.yellow;
+                if (patientData.Healthyness > 40) {
+                    health.text = "PRETTY BAD";
+                    health.color = Color.yellow;
+                    if (patientData.Healthyness > 60) {
+                        health.text = "NOT GOOD";
+                        health.color = Color.green;
+                        if (patientData.Healthyness > 80) {
+                            health.text = "OK";
+                            health.color = Color.green;
+                        }
+                    }
+                }
+            }
+        }
 
         //assignedEmployees.text = patientData.ResponsibleEmployees.Count.ToString() + "/" + patientData.SyndromeExtremeness.ToString();
 

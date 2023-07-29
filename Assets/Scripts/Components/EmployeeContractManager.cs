@@ -12,7 +12,7 @@ public class EmployeeContractManager : MonoBehaviour {
 
     Vector3 lerpTo;
 
-    bool ok;
+    bool _ok;
 
     void Start() {
         contract.transform.localPosition = new(contract.transform.localPosition.x, -1, contract.transform.localPosition.z);
@@ -25,11 +25,11 @@ public class EmployeeContractManager : MonoBehaviour {
         else
             contract.transform.localPosition = Vector3.Lerp(contract.transform.localPosition, lerpTo, Time.unscaledDeltaTime * 4f);
 
-        if (Input.GetKeyDown(KeyCode.Escape) || ok) {
+        if (Input.GetKeyDown(KeyCode.Escape) || _ok) {
             contractVisible = !contractVisible;
-            ok = false;
+            _ok = false;
 
-            if (contractVisible) {
+            if (contractVisible && !MoneyManager.Instance.GameOver) {
                 contractForm.SetData();
                 lerpTo = new Vector3(contract.transform.localPosition.x, 0, contract.transform.localPosition.z);
                 ScreenManager.Instance.SetCursorState(CursorState.Free);
@@ -42,14 +42,10 @@ public class EmployeeContractManager : MonoBehaviour {
     }
 
     public void Ok() {
-        ok = true;
+        _ok = true;
     }
 
     public void Resign() {
         SceneManager.LoadScene("Menu");
-    }
-
-    void OnApplicationQuit() {
-        SavedData.SaveData();
     }
 }

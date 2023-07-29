@@ -1608,6 +1608,17 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1798657025}
   m_CullTransparentMesh: 1
+--- !u!114 &1882601268 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 4633770035759537323, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+  m_PrefabInstance: {fileID: 2499708212004461206}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fbc5bbf130d050841b3d58c3931c4584, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1926768022
 GameObject:
   m_ObjectHideFlags: 0
@@ -1765,6 +1776,10 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1017757542729457465, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 2980418099509577353, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
       propertyPath: m_Pivot.x
       value: 0.5
@@ -1845,10 +1860,58 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 3735723607909645236, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735723607909645236, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1882601268}
+    - target: {fileID: 3735723607909645236, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: Confirm
+      objectReference: {fileID: 0}
+    - target: {fileID: 3735723607909645236, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EmployeeContract, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325819767001313581, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 4325819767001313581, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229992377651796561, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_Sprite
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 5229992377651796561, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_Color.a
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6784317692519694460, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1740625220}
+    - target: {fileID: 8286950654564035827, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286950654564035827, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 1882601268}
+    - target: {fileID: 8286950654564035827, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: QuitGame
+      objectReference: {fileID: 0}
+    - target: {fileID: 8286950654564035827, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
+      value: EmployeeContract, Assembly-CSharp
+      objectReference: {fileID: 0}
     - target: {fileID: 8981634868306834243, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
       propertyPath: m_Name
       value: Contract

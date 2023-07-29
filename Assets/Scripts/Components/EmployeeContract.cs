@@ -77,4 +77,8 @@ public class EmployeeContract : MonoBehaviour {
     public void QuitGame() {
         Application.Quit();
     }
+
+    void OnApplicationQuit() {
+        SavedData.SaveData();
+    }
 }
