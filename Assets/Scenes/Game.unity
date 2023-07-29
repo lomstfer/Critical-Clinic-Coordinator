@@ -560,6 +560,14 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 238036019}
     m_Modifications:
+    - target: {fileID: 353162574945396462, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217779490676981597, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5273384664240428864, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: image
       value: 
@@ -618,7 +626,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_LocalRotation.w
@@ -638,11 +646,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 96
+      value: -59
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 61
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -656,9 +664,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7361013002686462096, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 8302846173319050170, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_Name
       value: MoneyDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302846173319050170, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -3992,7 +4008,7 @@ MonoBehaviour:
   - {fileID: 802076063}
   - {fileID: 1070960696}
   offset: {x: 0, y: 0.05, z: -0.3}
-  speed: 1.2
+  speed: 10
   cursorWeight: 0.1
   headMovement: 0.5
 --- !u!1 &1035261547
@@ -4668,7 +4684,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.49989}
+  m_AnchoredPosition: {x: 0, y: -87.49994}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159447418
@@ -6285,7 +6301,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 1577393708}
   m_Direction: 2
   m_Value: 0
-  m_Size: 0.50000054
+  m_Size: 1
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -6738,6 +6754,22 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 1212240409}
     m_Modifications:
+    - target: {fileID: 353162574945396462, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196463432104559684, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_Delegates.Array.data[0].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4196463432104559684, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_Delegates.Array.data[1].callback.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5217779490676981597, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 5273384664240428864, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: image
       value: 
@@ -6820,11 +6852,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_AnchoredPosition.x
-      value: 96
+      value: 123
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_AnchoredPosition.y
-      value: 61
+      value: -74.1
       objectReference: {fileID: 0}
     - target: {fileID: 5668693712974725176, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -6838,9 +6870,17 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7361013002686462096, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_RaycastTarget
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8302846173319050170, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
       propertyPath: m_Name
       value: MoneyDisplay
+      objectReference: {fileID: 0}
+    - target: {fileID: 8302846173319050170, guid: abe680ec3c40f0041856c6eca0cb96a4, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
@@ -8469,7 +8509,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!82 &2098197356
 AudioSource:
   m_ObjectHideFlags: 0
