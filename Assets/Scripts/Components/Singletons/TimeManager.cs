@@ -21,6 +21,11 @@ public class TimeManager : Singleton<TimeManager> {
         while (true) {
             yield return new WaitForSeconds(60 / TimeSpeed);
             ElapsedTime++;
+
+            if (ElapsedTime > SavedData.Data.Highscore) {
+                SavedData.Data.Highscore = ElapsedTime;
+            }
+
             UpdateDigitalTime();
             MinuteTickEvent?.Invoke();
             if (ElapsedTime % 60 == 0) {

@@ -15,9 +15,7 @@ public class MoneyManager : Singleton<MoneyManager> {
     }
 
     void Update() {
-        if (Money > SavedData.Data.Highscore) {
-            SavedData.Data.Highscore = Money;
-        }    
+            
     }
 
     void OnHourTick() {
