@@ -4835,7 +4835,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.49994}
+  m_AnchoredPosition: {x: 0, y: -87.499916}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159447418
@@ -5850,10 +5850,17 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   groupchatMessagePrefab: {fileID: 2076424135752136917, guid: 8bf20d92ddf968c49af0ef79798adbe0, type: 3}
   groupchatListContent: {fileID: 1425001162}
-  BossStartMessage: Welcome to your first day at the job @Player! U will be hiring
-    & assigning personell to tasks based on what is needed. Your colleagues will
-    tell you what they require in this groupchat. Good luck!  PS. If u screw up u
-    get FIRED :)
+  BossStartMessage: 'Welcome to your first day at the job @Player! Your job is to
+    hire and assign employees in order to save as many patients as you can.
+
+
+    If
+    you fail to save a patient we will loose money but if you succeed the patient
+    will be alive to pay up. You can see how much money we have left in the "money.exe"
+    window on your computer.
+
+
+    Good luck and don''t waste our money!'
   BossStartMessageDelay: 1
 --- !u!114 &1374615029
 MonoBehaviour:
