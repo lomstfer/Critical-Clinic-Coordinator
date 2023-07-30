@@ -1162,7 +1162,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 42.6, y: -119.7}
+  m_AnchoredPosition: {x: 88.7, y: -39}
   m_SizeDelta: {x: 52.16, y: 39.94}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1699678230
@@ -1540,7 +1540,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 1, y: 0.5}
   m_AnchoredPosition: {x: 0, y: -22}
-  m_SizeDelta: {x: -53.4, y: 193.6}
+  m_SizeDelta: {x: -40, y: 193.6}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1798657027
 MonoBehaviour:
@@ -1562,21 +1562,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: '- Knut Andersson -
-
-    Music
-
-
-    - Max Westerlund -
-
-    Game Design,
-    Programming & 3D/2D Art
-
-
-    - Gabriel Wingard -
-
-    Game Design, Programming
-    & SFX'
+  m_text: "Made by:\nMax Westerlund & \nGabriel (lomstfer) Wingard\n\nMusic: \nKnut
+    Anderson\n\nThis is a submisson for Major Jam 6 and was created in 1 week.\n\n\n"
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: e600ceb15838b6f44a4a6a71ee5aed97, type: 2}
   m_sharedMaterial: {fileID: -754274783106231981, guid: e600ceb15838b6f44a4a6a71ee5aed97, type: 2}
