@@ -98,6 +98,12 @@ MonoBehaviour:
   nameT: {fileID: 8246006108669208459}
   syndromes: {fileID: 2212967712239932951}
   health: {fileID: 1314871185699295634}
+  statusIcon: {fileID: 5889065301905571531}
+  arrowUp: {fileID: 21300000, guid: e603ece68ca9d9947816ac726601d38c, type: 3}
+  doubleUp: {fileID: 21300000, guid: 3dc0b3c76416e9143a7d67d61142c6d8, type: 3}
+  arrowDown: {fileID: 21300000, guid: c322b2785edeb1849a0a677f378361b2, type: 3}
+  doubleDown: {fileID: 21300000, guid: 681ff7a6c5aa08d4bab5a459a3f13550, type: 3}
+  line: {fileID: 21300000, guid: de23a0852e8a621469de46913f4d00df, type: 3}
 --- !u!1 &1586366908503834013
 GameObject:
   m_ObjectHideFlags: 0
@@ -107,8 +113,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8438610459112849603}
-  - component: {fileID: 3992551287610134217}
-  - component: {fileID: 113689345889127944}
+  - component: {fileID: 3197954290966610566}
   m_Layer: 0
   m_Name: Health
   m_TagString: Untagged
@@ -128,16 +133,16 @@ RectTransform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
-  - {fileID: 3625508369314058090}
   - {fileID: 7986267510836843921}
+  - {fileID: 3625508369314058090}
   m_Father: {fileID: 8784770571434295496}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: 31.9, y: -16.9}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchoredPosition: {x: 55.6, y: -16.9}
+  m_SizeDelta: {x: 100, y: 10}
   m_Pivot: {x: 0.5, y: 0.5}
---- !u!114 &3992551287610134217
+--- !u!114 &3197954290966610566
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -154,29 +159,15 @@ MonoBehaviour:
     m_Right: 0
     m_Top: 0
     m_Bottom: 0
-  m_ChildAlignment: 0
-  m_Spacing: 0
-  m_ChildForceExpandWidth: 1
-  m_ChildForceExpandHeight: 1
-  m_ChildControlWidth: 1
+  m_ChildAlignment: 3
+  m_Spacing: 2
+  m_ChildForceExpandWidth: 0
+  m_ChildForceExpandHeight: 0
+  m_ChildControlWidth: 0
   m_ChildControlHeight: 0
   m_ChildScaleWidth: 0
   m_ChildScaleHeight: 0
   m_ReverseArrangement: 0
---- !u!114 &113689345889127944
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1586366908503834013}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3245ec927659c4140ac4f8d17403cc18, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  m_HorizontalFit: 2
-  m_VerticalFit: 2
 --- !u!1 &1885794417114612712
 GameObject:
   m_ObjectHideFlags: 0
@@ -202,7 +193,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1885794417114612712}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -212,7 +203,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 10}
+  m_SizeDelta: {x: 7, y: 7}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &4017325266634848856
 CanvasRenderer:
@@ -242,7 +233,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 21300000, guid: 74758619f8e683b44a893562c4c908d4, type: 3}
+  m_Sprite: {fileID: 21300000, guid: de23a0852e8a621469de46913f4d00df, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
@@ -421,7 +412,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 12.353901}
+  m_SizeDelta: {x: 31.51154, y: 8.01}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &3362176811667255796
 CanvasRenderer:
@@ -514,7 +505,7 @@ MonoBehaviour:
   m_VertexBufferAutoSizeReduction: 0
   m_useMaxVisibleDescender: 1
   m_pageToDisplay: 1
-  m_margin: {x: 4.09756, y: 0, z: -33.145485, w: 0}
+  m_margin: {x: -0.1845007, y: 0, z: -33.145485, w: 0}
   m_isUsingLegacyAnimationComponent: 0
   m_isVolumetricText: 0
   m_hasFontAssetChanged: 0
