@@ -18,13 +18,13 @@ public static class Utils {
         string t = "";
         if (healthyness > 0) {
             t = "CRITICAL";
-            if (healthyness > 20) {
+            if (healthyness > 40) {
                 t = "VERY BAD";
-                if (healthyness > 40) {
+                if (healthyness > 60) {
                     t = "BAD";
-                    if (healthyness > 60) {
+                    if (healthyness > 120) {
                         t = "FINE";
-                        if (healthyness > 80) {
+                        if (healthyness > 160) {
                             t = "GOOD";
                         }
                     }
@@ -38,13 +38,13 @@ public static class Utils {
         Color c = Color.yellow;
         if (healthyness > 0) {
             c = new(1, 0.35f, 0.35f);
-            if (healthyness > 20) {
+            if (healthyness > 40) {
                 c = Color.yellow;
-                if (healthyness > 40) {
+                if (healthyness > 60) {
                     c = Color.yellow;
-                    if (healthyness > 60) {
+                    if (healthyness > 120) {
                         c = Color.yellow;
-                        if (healthyness > 80) {
+                        if (healthyness > 160) {
                             c = Color.green;
                         }
                     }

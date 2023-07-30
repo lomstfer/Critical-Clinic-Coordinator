@@ -120,6 +120,10 @@ public class PatientManager : Singleton<PatientManager> {
     }
 
     IEnumerator SpawnPatients() {
+        if (SavedData.Data.Highscore < 20) {
+            yield return new WaitForSeconds(10);
+        }
+
         while (true) {
             float random = UnityEngine.Random.Range(spawnNewPatientTime - spawnNewPatientRandomnessTime, spawnNewPatientTime + spawnNewPatientRandomnessTime);
             float timeScale = Mathf.Clamp(TimeManager.ElapsedTime * spawnMorePatientsAmountByTime, 0, spawnMorePatientsMaximumTimeScale);
