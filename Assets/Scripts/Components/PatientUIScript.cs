@@ -47,7 +47,7 @@ public class PatientUIScript : MonoBehaviour {
                     health.color = Color.yellow;
                     if (patientData.Healthyness > 60) {
                         health.text = "NOT GOOD";
-                        health.color = Color.green;
+                        health.color = Color.yellow;
                         if (patientData.Healthyness > 80) {
                             health.text = "OK";
                             health.color = Color.green;
