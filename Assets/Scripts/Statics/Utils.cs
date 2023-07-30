@@ -17,15 +17,15 @@ public static class Utils {
     public static string TextFromHealthyness(float healthyness) {
         string t = "";
         if (healthyness > 0) {
-            t = "AWFUL";
+            t = "CRITICAL";
             if (healthyness > 20) {
-                t = "BAD";
+                t = "VERY BAD";
                 if (healthyness > 40) {
-                    t = "PRETTY BAD";
+                    t = "BAD";
                     if (healthyness > 60) {
-                        t = "NOT GOOD";
+                        t = "FINE";
                         if (healthyness > 80) {
-                            t = "OK";
+                            t = "GOOD";
                         }
                     }
                 }

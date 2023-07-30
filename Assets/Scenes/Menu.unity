@@ -1944,6 +1944,10 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_TargetAssemblyTypeName
       value: EmployeeContract, Assembly-CSharp
       objectReference: {fileID: 0}
+    - target: {fileID: 8288843745026434595, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
+      propertyPath: m_text
+      value: Enter your name
+      objectReference: {fileID: 0}
     - target: {fileID: 8981634868306834243, guid: ecfa25ac5c1168f4887489c2dd2d527b, type: 3}
       propertyPath: m_Name
       value: Contract
