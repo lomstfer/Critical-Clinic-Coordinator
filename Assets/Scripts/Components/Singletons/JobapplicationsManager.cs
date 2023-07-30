@@ -28,7 +28,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     void Start() {
         int added = 0;
         List<Skill> usedSkills = new();
-        while (usedSkills.Count < Enum.GetValues(typeof(Skill)).Length && added < maxStartAmount) {
+        while (usedSkills.Count <= Enum.GetValues(typeof(Skill)).Length && added < maxStartAmount) {
             Jobapplication application = JobapplicationGenerator.GenerateNewJobapplication();
             AddNewJobapplication(application);
             foreach (Skill skill in application.EmployeeData.Skills) {
