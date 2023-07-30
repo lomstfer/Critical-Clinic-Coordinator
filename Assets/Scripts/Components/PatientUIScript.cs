@@ -9,16 +9,44 @@ public class PatientUIScript : MonoBehaviour {
     [SerializeField] TextMeshProUGUI nameT;
     [SerializeField] TextMeshProUGUI syndromes;
     [SerializeField] TextMeshProUGUI health;
+    [SerializeField] Button sedateBtn;
+    [SerializeField] Image sedateBtnBackground;
+    [SerializeField] TextMeshProUGUI sedateBtnText;
+    [SerializeField] Color sedateBtnActiveColor;
+    [SerializeField] Color sedateBtnInactiveColor;
     [SerializeField] Image statusIcon;
     [SerializeField] Sprite arrowUp;
     [SerializeField] Sprite doubleUp;
     [SerializeField] Sprite arrowDown;
     [SerializeField] Sprite doubleDown;
     [SerializeField] Sprite line;
+    [SerializeField] Color upColor;
+    [SerializeField] Color downColor;
+    [SerializeField] Color steadyColor;
     //[SerializeField] TextMeshProUGUI assignedEmployees;
 
     Patient _patient;
     Employee _employee;
+
+    PatientHealthChangeStatus healthStatus = PatientHealthChangeStatus.DoubleNegative;
+
+    void Update() {
+        if (healthStatus == PatientHealthChangeStatus.NoChange) {
+            sedateBtn.interactable = false;
+            sedateBtnBackground.color = sedateBtnInactiveColor;
+            sedateBtnText.text = "Sedated (" + _patient.SedateTime + ")";
+        }
+        else if (!PatientManager.Instance.CanSedate) {
+            sedateBtn.interactable = false;
+            sedateBtnBackground.color = sedateBtnInactiveColor;
+            sedateBtnText.text = "Cooldown (" + (int)PatientManager.Instance.TimeLeftUntilCanSedate + ")";
+        }
+        else {
+            sedateBtn.interactable = true;
+            sedateBtnBackground.color = sedateBtnActiveColor;
+            sedateBtnText.text = "Sedate";
+        }
+    }
 
     public void SetData(Patient patientData, Employee employeeData) {
         nameT.text = patientData.FirstName + " " + patientData.LastName;
@@ -59,23 +87,33 @@ public class PatientUIScript : MonoBehaviour {
     }
 
     public void ChangeStatus(PatientHealthChangeStatus status) {
+        healthStatus = status;
         switch (status) {
             case (PatientHealthChangeStatus.Positive):
+                statusIcon.color = upColor;
                 statusIcon.sprite = arrowUp;
                 break;
             case (PatientHealthChangeStatus.DoublePositive):
+                statusIcon.color = upColor;
                 statusIcon.sprite = doubleUp;
                 break;
             case (PatientHealthChangeStatus.Negative):
+                statusIcon.color = downColor;
                 statusIcon.sprite = arrowDown;
                 break;
             case (PatientHealthChangeStatus.DoubleNegative):
+                statusIcon.color = downColor;
                 statusIcon.sprite = doubleDown;
                 break;
             case (PatientHealthChangeStatus.NoChange):
+                statusIcon.color = steadyColor;
                 statusIcon.sprite = line;
                 break;
         }
+    }
+
+    public void Sedate() {
+        PatientManager.Instance.SedatePatient(_patient);
     }
 }
 
