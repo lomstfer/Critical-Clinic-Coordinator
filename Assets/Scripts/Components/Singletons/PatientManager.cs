@@ -121,7 +121,7 @@ public class PatientManager : Singleton<PatientManager> {
 
     IEnumerator SpawnPatients() {
         if (SavedData.Data.Highscore < 20) {
-            yield return new WaitForSeconds(10);
+            yield return new WaitForSeconds(15);
         }
 
         while (true) {

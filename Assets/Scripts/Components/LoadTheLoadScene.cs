@@ -12,7 +12,6 @@ public class LoadTheLoadScene : MonoBehaviour {
     }
 
     async void Loade() {
-        Debug.Log(SceneChangeManager.Instance.SceneToLoad);
         AsyncOperation a = SceneManager.LoadSceneAsync(SceneChangeManager.Instance.SceneToLoad);
         a.allowSceneActivation = false;
         
