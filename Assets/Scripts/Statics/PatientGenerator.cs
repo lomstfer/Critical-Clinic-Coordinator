@@ -11,7 +11,7 @@ public static class PatientGenerator {
         patient.FirstName = isMale ? NameGenerator.GetRandomMaleName() : NameGenerator.GetRandomFemaleName();
         patient.LastName = NameGenerator.GetRandomLastName();
 
-        patient.Healthyness = UnityEngine.Random.Range(30, 60);
+        patient.Healthyness = UnityEngine.Random.Range(60, 120);
         //patient.SyndromeExtremeness = UnityEngine.Random.Range(1, 3);
 
         // Syndromes
