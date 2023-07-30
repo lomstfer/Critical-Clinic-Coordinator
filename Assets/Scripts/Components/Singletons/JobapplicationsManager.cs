@@ -14,6 +14,7 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     public Color SelectedJobApplicationColor;
 
     [Header("Data")]
+    [SerializeField] int maxStartAmount = 6;
     [SerializeField] float newJobapplicationTime = 10;
     [SerializeField] float timeRandomness = 0f;
 
@@ -25,6 +26,18 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
     Dictionary<Jobapplication, GameObject> _jobapplications = new();
 
     void Start() {
+        int added = 0;
+        List<Skill> usedSkills = new();
+        while (usedSkills.Count < Enum.GetValues(typeof(Skill)).Length && added < maxStartAmount) {
+            Jobapplication application = JobapplicationGenerator.GenerateNewJobapplication();
+            AddNewJobapplication(application);
+            foreach (Skill skill in application.EmployeeData.Skills) {
+                if (!usedSkills.Contains(skill)) {
+                    usedSkills.Add(skill);
+                }
+            }
+            added++;
+        }
         StartCoroutine(AddJobapplicationTimer());
     }
 
@@ -37,16 +50,15 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
         while (true) {
             float time = UnityEngine.Random.Range(newJobapplicationTime - timeRandomness, newJobapplicationTime + timeRandomness);
             yield return new WaitForSeconds(time);
-            AddNewJobapplication();
+            AddNewJobapplication(JobapplicationGenerator.GenerateNewJobapplication());
         }
     }
 
-    void AddNewJobapplication() {
-        Jobapplication jobapplicationData = JobapplicationGenerator.GenerateNewJobapplication();
+    void AddNewJobapplication(Jobapplication application) {
         GameObject mail = Instantiate(mailPrefab, mailListContent);
-        mail.GetComponent<JobapplicationScript>().SetJobapplicationData(jobapplicationData);
-        _jobapplications.Add(jobapplicationData, mail);
-        NewJobApplication?.Invoke(jobapplicationData);
+        mail.GetComponent<JobapplicationScript>().SetJobapplicationData(application);
+        _jobapplications.Add(application, mail);
+        NewJobApplication?.Invoke(application);
     }
 
     public void SelectJobApplication(Jobapplication jobapplication, GameObject gameObject) {
