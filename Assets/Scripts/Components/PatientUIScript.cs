@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using TMPro;
 using System.Linq;
 
@@ -8,6 +9,12 @@ public class PatientUIScript : MonoBehaviour {
     [SerializeField] TextMeshProUGUI nameT;
     [SerializeField] TextMeshProUGUI syndromes;
     [SerializeField] TextMeshProUGUI health;
+    [SerializeField] Image statusIcon;
+    [SerializeField] Sprite arrowUp;
+    [SerializeField] Sprite doubleUp;
+    [SerializeField] Sprite arrowDown;
+    [SerializeField] Sprite doubleDown;
+    [SerializeField] Sprite line;
     //[SerializeField] TextMeshProUGUI assignedEmployees;
 
     Patient _patient;
@@ -50,4 +57,32 @@ public class PatientUIScript : MonoBehaviour {
     public void Remove() {
         PatientManager.Instance.RemoveEmployeeFromPatient(_patient, _employee);
     }
+
+    public void ChangeStatus(PatientHealthChangeStatus status) {
+        switch (status) {
+            case (PatientHealthChangeStatus.Positive):
+                statusIcon.sprite = arrowUp;
+                break;
+            case (PatientHealthChangeStatus.DoublePositive):
+                statusIcon.sprite = doubleUp;
+                break;
+            case (PatientHealthChangeStatus.Negative):
+                statusIcon.sprite = arrowDown;
+                break;
+            case (PatientHealthChangeStatus.DoubleNegative):
+                statusIcon.sprite = doubleDown;
+                break;
+            case (PatientHealthChangeStatus.NoChange):
+                statusIcon.sprite = line;
+                break;
+        }
+    }
+}
+
+public enum PatientHealthChangeStatus {
+    Positive,
+    DoublePositive,
+    Negative,
+    DoubleNegative,
+    NoChange
 }
