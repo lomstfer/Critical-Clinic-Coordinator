@@ -1516,7 +1516,8 @@ MonoBehaviour:
   mailListContent: {fileID: 1252473272}
   blockingTempContent: {fileID: 1487597339}
   SelectedJobApplicationColor: {r: 0.8773585, g: 0.8773585, b: 0.8773585, a: 1}
-  newJobapplicationTime: 15
+  maxStartAmount: 6
+  newJobapplicationTime: 10
   timeRandomness: 5
 --- !u!1001 &495308821
 PrefabInstance:
@@ -4766,7 +4767,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -87.49994}
+  m_AnchoredPosition: {x: 0, y: -87.49992}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1159447418

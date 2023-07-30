@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManager : Singleton<TimeManager> {
-    public static int ElapsedTime { get; private set; }
-    public static int[] DigitalTime { get; private set; }
+    public static int ElapsedTime = 0;
+    public static int[] DigitalTime = new int[4];
 
     public static float TimeSpeed = 60;
 
@@ -13,8 +13,6 @@ public class TimeManager : Singleton<TimeManager> {
     public event Action HourTickEvent;
 
     void Start() {
-        ElapsedTime = 0;
-        DigitalTime = new int[4];
         StartCoroutine(TimeCounter());
     }
 
