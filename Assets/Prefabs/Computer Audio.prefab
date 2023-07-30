@@ -47,6 +47,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   newGroupchatMessage: {fileID: 8300000, guid: e133a6dc5e340db4abeb9b683d3af73a, type: 3}
   buttonClick: {fileID: 8300000, guid: a591923aa62c23448ad5bc1978432cbc, type: 3}
+  mouseClickDown: {fileID: 8300000, guid: ad3b60b36c3823f47ab3a813223b12bb, type: 3}
+  mouseClickUp: {fileID: 8300000, guid: 486738b20e0b91242bf29c97f6a30d22, type: 3}
 --- !u!82 &7984172588488909595
 AudioSource:
   m_ObjectHideFlags: 0

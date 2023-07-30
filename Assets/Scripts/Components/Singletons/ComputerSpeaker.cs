@@ -5,7 +5,9 @@ using UnityEngine;
 public class ComputerSpeaker : Singleton<ComputerSpeaker> {
     public enum Sound {
         NewGroupchatMessage,
-        ButtonClick
+        ButtonClick,
+        MouseClickDown,
+        MouseClickUp,
     }
 
     AudioSource _audioSource;
@@ -22,7 +24,7 @@ public class ComputerSpeaker : Singleton<ComputerSpeaker> {
     void Start() {
         MoneyManager.Instance.GameOverEvent += OnGameOver;
         _sounds.Add(Sound.NewGroupchatMessage, newGroupchatMessage);    
-        _sounds.Add(Sound.ButtonClick, buttonClick);    
+        _sounds.Add(Sound.ButtonClick, buttonClick);  
     }
 
     void Update() {

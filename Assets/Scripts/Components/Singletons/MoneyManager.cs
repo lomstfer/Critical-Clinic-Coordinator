@@ -4,8 +4,8 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class MoneyManager : Singleton<MoneyManager> {
-    [SerializeField] float patientDiedCost;
-    [SerializeField] float patientRecoveredPay;
+    public float PatientDiedCost;
+    public float PatientRecoveredPay;
 
     public float GameOverTickTime = 0.5f;
     public float GameOverTotalTickTime = 2f;
@@ -36,10 +36,10 @@ public class MoneyManager : Singleton<MoneyManager> {
     }
 
     void PatientDied(Patient patient) {
-        Money -= patientDiedCost;
+        Money -= PatientDiedCost;
     }
 
     void PatientRecovered(Patient patient) {
-        Money += patientRecoveredPay;
+        Money += PatientRecoveredPay;
     }
 }

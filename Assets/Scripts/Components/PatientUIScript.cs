@@ -36,28 +36,8 @@ public class PatientUIScript : MonoBehaviour {
             }
         }
 
-        if (patientData.Healthyness > 0) {
-            health.text = "AWFUL";
-            health.color = new(1, 0.35f, 0.35f);
-            if (patientData.Healthyness > 20) {
-                health.text = "BAD";
-                health.color = Color.yellow;
-                if (patientData.Healthyness > 40) {
-                    health.text = "PRETTY BAD";
-                    health.color = Color.yellow;
-                    if (patientData.Healthyness > 60) {
-                        health.text = "NOT GOOD";
-                        health.color = Color.yellow;
-                        if (patientData.Healthyness > 80) {
-                            health.text = "OK";
-                            health.color = Color.green;
-                        }
-                    }
-                }
-            }
-        }
-
-        //assignedEmployees.text = patientData.ResponsibleEmployees.Count.ToString() + "/" + patientData.SyndromeExtremeness.ToString();
+        health.text = Utils.TextFromHealthyness(patientData.Healthyness);
+        health.color = Utils.ColorFromHealthyness(patientData.Healthyness);
 
         _patient = patientData;
         _employee = employeeData;

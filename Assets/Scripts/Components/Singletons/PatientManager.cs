@@ -8,6 +8,8 @@ using UnityEngine;
 public class PatientManager : Singleton<PatientManager> {
     [SerializeField] float spawnNewPatientTime;
     [SerializeField] float spawnNewPatientRandomnessTime;
+    [SerializeField] float spawnMorePatientsAmountByTime;
+    [SerializeField] float spawnMorePatientsMaximumTimeScale;
 
     public List<Patient> Patients = new();
 
@@ -113,7 +115,10 @@ public class PatientManager : Singleton<PatientManager> {
 
     IEnumerator SpawnPatients() {
         while (true) {
-            yield return new WaitForSeconds(UnityEngine.Random.Range(spawnNewPatientTime -  spawnNewPatientRandomnessTime, spawnNewPatientTime + spawnNewPatientRandomnessTime));
+            float random = UnityEngine.Random.Range(spawnNewPatientTime - spawnNewPatientRandomnessTime, spawnNewPatientTime + spawnNewPatientRandomnessTime);
+            float timeScale = Mathf.Clamp(TimeManager.ElapsedTime * spawnMorePatientsAmountByTime, 0, spawnMorePatientsMaximumTimeScale);
+
+            yield return new WaitForSeconds(random - timeScale);
             SpawnPatient();
         }
     }
@@ -125,7 +130,7 @@ public class PatientManager : Singleton<PatientManager> {
         GroupchatManager.Instance.AddMessage(new GroupchatMessage
         {
             Sender = new Employee { FirstName = "Ambulance", LastName = "", FaceId = null, Skills = null, ColorId=ColorGenerator.Instance.AmbulanceColor },
-            Message = "New patient!\nName: " + p.FirstName + " " + p.LastName + "\nSyndrome: " + Utils.GetSkillsAsString(p.Syndromes)
+            Message = "New patient!\nName: " + p.FirstName + " " + p.LastName + "\nSyndrome" + (p.Syndromes.Length > 1 ? "s" : "") + ": " + Utils.GetSkillsAsString(p.Syndromes) + "\nHealth: " + Utils.TextFromHealthyness(p.Healthyness) + "."
         }) ;
     }
 
@@ -149,7 +154,7 @@ public class PatientManager : Singleton<PatientManager> {
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
                 Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null, ColorId = ColorGenerator.Instance.BossColor },
-                Message = "I'm sorry to inform you that we were unable to save " + patient.FirstName + " " + patient.LastName + ". " + SavedData.Data.PlayerName + " , you better start hiring more competent people!" ,
+                Message = "I'm sorry to inform you that we were unable to save " + patient.FirstName + " " + patient.LastName + ". That means we lost " + MoneyManager.Instance.PatientDiedCost.ToString() + "!",
             });
             _patientsToRemove.Add(patient);
             return;
@@ -164,9 +169,9 @@ public class PatientManager : Singleton<PatientManager> {
             PatientRecovered?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage
             {
-                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null ,  ColorId= ColorGenerator.Instance.BossColor },
-                Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " has now fully recovered! Good work team!",
-            });
+                Sender = new Employee { FirstName = "THE ", LastName = "BOSS", FaceId = null, Skills = null, ColorId = ColorGenerator.Instance.BossColor },
+                Message = "I'm happy to announce that " + patient.FirstName + " " + patient.LastName + " has now fully recovered! +" + MoneyManager.Instance.PatientRecoveredPay.ToString(),
+            }) ;
             foreach (Employee emp in patient.ResponsibleEmployees) {
                 emp.AssignedPatient = null;
             }
