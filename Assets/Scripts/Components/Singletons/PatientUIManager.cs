@@ -18,6 +18,10 @@ public class PatientUIManager : Singleton<PatientUIManager> {
 
     Dictionary<Patient, GameObject> _patients = new();
 
+    public GameObject GetPatientGO(Patient p) {
+        return _patients[p];
+    }
+
     public void Show(Employee selectedEmployee) {
         selectedEmployeeUIScript.SetData(selectedEmployee);
 

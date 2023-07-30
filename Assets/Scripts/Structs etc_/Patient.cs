@@ -18,6 +18,8 @@ public class Patient {
     // Ticking down by the minute by 1 and up by 2 if ResponsibleEmployees.Count is >= SyndromeExtremeness;
     public int Healthyness;
 
+    public int SedateTime;
+
     public Skill[] GetSyndromesLeftToHeal() {
         List<Skill> syndromesLeft = Syndromes.ToList();
 

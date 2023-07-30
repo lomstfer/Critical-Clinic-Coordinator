@@ -3,6 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class PatientManager : Singleton<PatientManager> {
@@ -17,6 +18,11 @@ public class PatientManager : Singleton<PatientManager> {
     public event Action<Patient> RemovePatient;
     public event Action<Patient> PatientDied;
     public event Action<Patient> PatientRecovered;
+
+    public int SedateTimeToSleepPatient; // static
+    public float SedateCooldown; // static
+    public float TimeLeftUntilCanSedate;
+    public bool CanSedate = true;
 
     List<Patient> _patientsToRemove = new();
 
@@ -145,8 +151,44 @@ public class PatientManager : Singleton<PatientManager> {
        _patientsToRemove.Clear();
     }
 
+    public void SedatePatient(Patient patient) {
+        if (!CanSedate)
+            return;
+        patient.SedateTime = SedateTimeToSleepPatient;
+        CanSedate = false;
+        TimeLeftUntilCanSedate = SedateCooldown;
+        StartCoroutine(SedateCooldownCoroutine());
+    }
+
+    IEnumerator SedateCooldownCoroutine() {
+        while (true) {
+            TimeLeftUntilCanSedate -= Time.deltaTime;
+            if (TimeLeftUntilCanSedate <= 0) {
+                CanSedate = true;
+                yield break;
+            }
+            yield return null;
+        }
+    }
+
     void SetPatientTickValue(Patient patient) {
-        patient.Healthyness -= 1;
+        PatientUIScript pUI = PatientUIManager.Instance.GetPatientGO(patient).GetComponent<PatientUIScript>();
+        if (patient.SedateTime > 0) {
+            patient.SedateTime -= 1;
+            pUI.ChangeStatus(PatientHealthChangeStatus.NoChange);
+            return;
+        }
+
+        bool inNeedOfHelp = patient.CanGetHelpBy(new Employee { Skills = (Skill[])Enum.GetValues(typeof(Skill)) });
+        if (inNeedOfHelp) {
+            if (patient.ResponsibleEmployees.Count > 0) {
+                pUI.ChangeStatus(PatientHealthChangeStatus.Negative);
+                patient.Healthyness -= 1;
+            } else {
+                pUI.ChangeStatus(PatientHealthChangeStatus.DoubleNegative);
+                patient.Healthyness -= 2;
+            }
+        }
 
         if (patient.Healthyness < 0) {
             RemovePatient?.Invoke(patient);
@@ -161,6 +203,7 @@ public class PatientManager : Singleton<PatientManager> {
         }
 
         if (patient.GetSyndromesLeftToHeal().Length == 0) {
+            pUI.ChangeStatus(PatientHealthChangeStatus.DoublePositive);
             patient.Healthyness += 2;
         }
 
