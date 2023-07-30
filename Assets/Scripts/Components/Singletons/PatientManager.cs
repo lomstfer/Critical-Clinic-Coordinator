@@ -207,7 +207,7 @@ public class PatientManager : Singleton<PatientManager> {
             patient.Healthyness += 2;
         }
 
-        if (patient.Healthyness >= 100) {
+        if (patient.Healthyness >= 200) {
             RemovePatient?.Invoke(patient);
             PatientRecovered?.Invoke(patient);
             GroupchatManager.Instance.AddMessage(new GroupchatMessage

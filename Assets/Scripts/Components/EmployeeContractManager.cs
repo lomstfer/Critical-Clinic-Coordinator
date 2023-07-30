@@ -46,6 +46,6 @@ public class EmployeeContractManager : MonoBehaviour {
     }
 
     public void Resign() {
-        SceneManager.LoadScene("Menu");
+        SceneChangeManager.Instance.LoadScene("Menu");
     }
 }

@@ -71,7 +71,7 @@ public class EmployeeContract : MonoBehaviour {
     }
 
     public void Confirm() {
-        SceneManager.LoadScene("Game");
+        SceneChangeManager.Instance.LoadScene("Game");
     }
 
     public void QuitGame() {

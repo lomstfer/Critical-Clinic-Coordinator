@@ -43,6 +43,6 @@ public class GameOverScreen : MonoBehaviour {
     }
 
     void LoadMenu() {
-        UnityEngine.SceneManagement.SceneManager.LoadScene("Menu");
+        SceneChangeManager.Instance.LoadScene("Menu");
     }
 }
