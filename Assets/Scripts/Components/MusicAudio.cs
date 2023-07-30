@@ -18,7 +18,7 @@ public class MusicAudio : MonoBehaviour {
 
     void Update() {
         if (!MoneyManager.Instance.GameOver) {
-            _audioSource.volume = SavedData.Data.MusicVolume / 100f;
+            _audioSource.volume = Mathf.MoveTowards(_audioSource.volume, SavedData.Data.MusicVolume / 100f, 0.2f * Time.unscaledDeltaTime);
             volumeWant = _audioSource.volume;
             pitchWant = _audioSource.pitch;
         } else {
