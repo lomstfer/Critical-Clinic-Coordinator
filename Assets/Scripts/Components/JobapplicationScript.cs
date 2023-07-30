@@ -44,4 +44,8 @@ public class JobapplicationScript : MonoBehaviour {
     public void ShowJobApplication() {
         JobapplicationsManager.Instance.SelectJobApplication(jobapplicationData, gameObject);
     }
+
+    public void RemoveSelf() {
+        JobapplicationsManager.Instance.Remove(jobapplicationData);
+    }
 }

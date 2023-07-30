@@ -73,4 +73,10 @@ public class JobapplicationsManager : Singleton<JobapplicationsManager> {
             SelectedJobapplication = null;
         }
     }
+
+    public void Remove(Jobapplication jobapplication) {
+        Destroy(_jobapplications[jobapplication]);
+        _jobapplications.Remove(jobapplication);
+        SelectedJobapplication = null;
+    }
 }

@@ -7,8 +7,16 @@ public class GameOverScreen : MonoBehaviour {
     [SerializeField] Image image;
     [SerializeField] GameObject gameOverText;
 
+    float alphaWant = 0;
+
     void Start() {
         MoneyManager.Instance.GameOverEvent += OnGameOver;
+    }
+
+    void Update() {
+        if (MoneyManager.Instance.GameOver) {
+            image.color = new Color(0, 0, 0, Mathf.Lerp(image.color.a, alphaWant, Time.deltaTime));
+        }
     }
 
     void OnGameOver() {
@@ -21,7 +29,7 @@ public class GameOverScreen : MonoBehaviour {
 
         float increasePerTick = 1f / (float)times;
         for (int i = times; i > 0; i--) {
-            image.color += new Color(0, 0, 0, increasePerTick);
+            alphaWant += increasePerTick;
             yield return new WaitForSeconds(MoneyManager.Instance.GameOverTickTime);
         }
 
@@ -29,7 +37,7 @@ public class GameOverScreen : MonoBehaviour {
 
         gameOverText.SetActive(true);
 
-        yield return new WaitForSeconds(5f);
+        yield return new WaitForSeconds(8f);
 
         LoadMenu();
     }
