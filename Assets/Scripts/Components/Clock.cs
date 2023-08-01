@@ -9,7 +9,7 @@ public class Clock : MonoBehaviour {
     void Update() {
         string t = "";
         for (int i = 0; i < 4; i++) {
-            t += TimeManager.DigitalTime[i];
+            t += TimeManager.Instance.DigitalTime[i];
             if (i == 1) {
                 t += ":";
             }

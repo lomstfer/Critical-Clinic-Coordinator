@@ -38,7 +38,7 @@ public class GorupchatMessageScript : MonoBehaviour {
         nameT.color = messageData.Sender.ColorId;
         string t = "";
         for (int i = 0; i < 4; i++) {
-            t += TimeManager.DigitalTime[i].ToString();
+            t += TimeManager.Instance.DigitalTime[i].ToString();
             if (i == 1) {
                 t += ":";
             }

@@ -29,11 +29,11 @@ public class JobapplicationScript : MonoBehaviour {
 
     public void SetJobapplicationData(Jobapplication jobapplicationData) {
         this.jobapplicationData = jobapplicationData;
-        mailName.text = jobapplicationData.EmployeeData.FirstName + " " + jobapplicationData.EmployeeData.LastName;
+        mailName.text = jobapplicationData.EmployeeData.FirstName + ' ' + jobapplicationData.EmployeeData.LastName;
 
         string t = "";
         for (int i = 0; i < 4; i++) {
-            t += TimeManager.DigitalTime[i];
+            t += TimeManager.Instance.DigitalTime[i];
             if (i == 1) {
                 t += ":";
             }

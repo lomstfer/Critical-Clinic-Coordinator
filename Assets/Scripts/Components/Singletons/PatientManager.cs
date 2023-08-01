@@ -126,7 +126,7 @@ public class PatientManager : Singleton<PatientManager> {
 
         while (true) {
             float random = UnityEngine.Random.Range(spawnNewPatientTime - spawnNewPatientRandomnessTime, spawnNewPatientTime + spawnNewPatientRandomnessTime);
-            float timeScale = Mathf.Clamp(TimeManager.ElapsedTime * spawnMorePatientsAmountByTime, 0, spawnMorePatientsMaximumTimeScale);
+            float timeScale = Mathf.Clamp(TimeManager.Instance.ElapsedTime * spawnMorePatientsAmountByTime, 0, spawnMorePatientsMaximumTimeScale);
 
             yield return new WaitForSeconds(random - timeScale);
             SpawnPatient();

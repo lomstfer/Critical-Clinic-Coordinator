@@ -4,10 +4,10 @@ using System.Collections.Generic;
 using UnityEngine;
 
 public class TimeManager : Singleton<TimeManager> {
-    public static int ElapsedTime = 0;
-    public static int[] DigitalTime = new int[4];
+    public int ElapsedTime = 0;
+    public int[] DigitalTime = new int[4];
 
-    public static float TimeSpeed = 60;
+    public float TimeSpeed = 60;
 
     public event Action MinuteTickEvent;
     public event Action HourTickEvent;
